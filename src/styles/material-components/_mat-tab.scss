@@ -1,0 +1,158 @@
+@import "../colors";
+
+@mixin mat-tab-scss {
+  .advCommExec {
+    .mat-tab-label{
+      padding: 0 !important;
+    }
+  }
+  .mainTabGrp {
+    border-bottom: none;
+
+    .mat-ink-bar {
+      display: none !important;
+    }
+
+    .mat-tab-label-active {
+      background: map-get($map: $SAAR-custom-blue, $key: A70);
+      color: white;
+      border-radius: 12px;
+    }
+
+    .mat-tab-label {
+      border: 1px solid #c0bdbd;
+      border-radius: 0px;
+      height: 38px;
+      padding: 0px 15px 0px 15px;
+      min-width: unset;
+      //width: 80px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+
+    .mat-tab-label:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+
+    .mat-tab-label:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+
+    .mat-tab-label:only-child {
+      border-radius: 4px;
+    }
+
+    .mat-tab-label.mat-tab-disabled {
+      margin-left: auto;
+    }
+
+    .mat-tab-header {
+      border-bottom: 0px;
+    }
+  }
+
+  .setup-games-tab-grp {
+    border-bottom: none;
+
+    .mat-ink-bar {
+      display: none !important;
+    }
+
+    .mat-tab-header {
+      border-bottom: 0px;
+      margin-bottom: -0.8px;
+    }
+
+    .mat-tab-label-active {
+      background: white !important;
+      color: map-get($map: $SAAR-custom-blue, $key: A70);
+      border-radius: 12px;
+      font-weight: 600;
+      border-bottom: 0px !important;
+    }
+
+    .mat-tab-label {
+      background: #f4f4f4;
+      border: 1px solid #aaaaaa;
+      border-radius: 0px;
+      height: 38px;
+      padding: 0px 15px 0px 15px;
+      min-width: 150px;
+      margin-top: 5px;
+      opacity: 1;
+
+      &:first-child {
+        border-top-left-radius: 4px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 4px;
+      }
+    }
+
+    .mat-tab-body-wrapper {
+      border: 1px solid #aaaaaa;
+      padding: 15px;
+    }
+  }
+
+  .pokerTabGrp {
+    .mat-ink-bar {
+      display: unset !important;
+      background-color: map-get($map: $SAAR-custom-blue, $key: A70) !important;
+    }
+
+    .mat-tab-label-active {
+      color: map-get($map: $SAAR-custom-blue, $key: A70);
+      background-color: white;
+      border: none;
+    }
+
+    .mat-tab-label {
+      border: none;
+      height: 38px;
+      padding: 0px 4px 0px 4px;
+      width: 160px;
+      margin-bottom: 0;
+    }
+
+    .mat-tab-header {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  .productsChannelsTabGrp {
+    .mat-ink-bar {
+      display: unset !important;
+      background-color: map-get($map: $SAAR-custom-blue, $key: A70) !important;
+    }
+
+    .mat-tab-label-active {
+      color: map-get($map: $SAAR-custom-blue, $key: A70);
+      background-color: white;
+    }
+
+    .mat-tab-label {
+      border: none;
+      margin-bottom: unset;
+      width: 90px;
+      padding: 10px;
+      justify-content: start;
+    }
+
+    .mat-tab-header {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .mat-tab-body-wrapper {
+      margin-top: 20px;
+    }
+  }
+
+  .hideHeader {
+    .mat-tab-header {
+      display: none;
+    }
+  }
+}
+

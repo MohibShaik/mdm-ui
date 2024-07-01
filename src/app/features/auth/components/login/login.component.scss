@@ -1,0 +1,41 @@
+@import '../../../../../styles/colors';
+
+.main-container {
+    height: 100%;
+
+    .login-card {
+        padding: 24px;
+        width: 30%;
+        border-radius: 8px;
+
+        .body {
+            padding-top: 32px;
+
+            .primary-btn {
+                color: map-get($map: $white-color-variants, $key: 300);
+                font-size: 16px;
+                // font-weight: 600;
+                // text-transform: uppercase;
+            }
+
+            .input-field {
+                margin: 24px 0;
+
+                label {
+                    padding-bottom: 4px;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .end-section {
+            text-align: end;
+            padding: 0 0 16px 0;
+            cursor: pointer;
+
+            >a {
+                text-decoration: none;
+            }
+        }
+    }
+}

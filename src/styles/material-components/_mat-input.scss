@@ -1,0 +1,47 @@
+@import "../colors";
+
+@mixin mat-input-scss {
+  .mat-mdc-form-field-subscript-wrapper {
+    height: 0px !important;
+  }
+
+  #search-inp {
+    .mdc-notched-outline__leading {
+      border-radius: 12px 0 0 12px;
+      // border-color: map-get($map: $gray-color-variants, $key: 100) !important;
+    }
+
+    .mdc-notched-outline__trailing {
+      border-radius: 0px 12px 12px 0px;
+      // border-color: map-get($map: $gray-color-variants, $key: 100) !important;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      max-height: 40px !important;
+    }
+
+    .mat-mdc-form-field-infix {
+      display: flex !important;
+      gap: 10px;
+      padding-left: 16px;
+      justify-content: center;
+      align-items: center;
+      min-height: 35px !important;
+    }
+
+    .search-icon {
+      width: 18px;
+      height: 18px;
+      padding: 0 12px 12px 12px;
+    }
+
+    .pdf-icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .mat-mdc-form-field-error {
+    display: flex !important;
+  }
+}

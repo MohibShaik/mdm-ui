@@ -1,0 +1,7 @@
+@import '../../../../../styles/colors';
+
+.main-container {
+    font-size: 12px;
+    color: map-get($map: $gray-color-variants, $key: 100);
+    font-weight: 500;
+}

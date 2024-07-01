@@ -1,0 +1,263 @@
+@import "./colors";
+@import "./mixins/mixins.scss";
+
+.text-end {
+  text-align: end;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.f-13 {
+  font-size: 13px;
+}
+
+.f-14 {
+  font-size: 14px;
+}
+
+.f-16 {
+  font-size: 16px !important;
+}
+
+.f-12 {
+  font-size: 12px !important;
+}
+
+.fs-10 {
+  font-size: 10px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.container {
+  padding: 10px 10px;
+
+  .sub-header {
+    color: map-get($map: $black-color-variants, $key: 300);
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.p-25 {
+  padding: 1.563rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-primary {
+  width: 142px;
+  height: 40px;
+  background-color: map-get($map: $pink-color-variants, $key: 700);
+  color: map-get($map: $white-color-variants, $key: 300);
+  border-radius: 5px;
+}
+
+.element-width-100 {
+  @include element-width(100%);
+}
+
+.element-width-90 {
+  @include element-width(90%);
+}
+
+.element-width-80 {
+  @include element-width(80%);
+}
+
+.element-width-75 {
+  @include element-width(75%);
+}
+
+.element-width-65 {
+  @include element-width(65%);
+}
+
+.element-width-50 {
+  @include element-width(50%);
+}
+
+.element-width-45 {
+  @include element-width(45%);
+}
+
+.element-width-40 {
+  @include element-width(40%);
+}
+
+.element-width-35 {
+  @include element-width(35%);
+}
+
+.element-width-25 {
+  @include element-width(25%);
+}
+
+.element-width-20 {
+  @include element-width(20%);
+}
+
+.element-width-10 {
+  @include element-width(10%);
+}
+
+.pl-5 {
+  @include padding(0px, 0px, 0px, 0px);
+}
+
+.pl-15 {
+  @include padding(0px, 0px, 0px, 15px);
+}
+
+.pr-15 {
+  @include padding(0px, 15px, 0px, 0px);
+}
+
+.p-10 {
+  @include padding(10px, 10px, 10px, 10px);
+}
+
+.pl-20 {
+  @include padding(0px, 0px, 0px, 20px);
+}
+
+.mt-5 {
+  @include margin(5px, 0px, 0px, 0px);
+}
+
+.mt-10 {
+  @include margin(10px, 0px, 0px, 0px);
+}
+
+.mt-20 {
+  @include margin(20px, 0px, 0px, 0px);
+}
+
+.mt-40 {
+  @include margin(40px, 0px, 0px, 0px);
+}
+
+.ml-20 {
+  @include margin(0px, 0px, 0px, 20px);
+}
+
+.mr-20 {
+  @include margin(0px, 20px, 0px, 0px);
+}
+
+.mb-20 {
+  @include margin(0px, 0px, 20px, 0px);
+}
+
+.ml-15 {
+  @include margin(0px, 0px, 0px, 15px);
+}
+
+.ml-10 {
+  @include margin(0px, 0px, 0px, 10px);
+}
+
+.ml-5 {
+  @include margin(0px, 0px, 0px, 5px);
+}
+
+.center-align-items {
+  align-items: center;
+}
+
+.fw {
+  font-weight: 800;
+  margin-top: 10px;
+  // display: flex;
+  // align-items: start;
+  // justify-content: start;
+}
+
+.divider {
+  border-bottom: 1px solid map-get($map: $gray-color-variants, $key: 500);
+}
+
+.btn-dark {
+  background-color: map-get($map: $white-color-variants, $key: A100);
+  color: map-get($map: $white-color-variants, $key: 100);
+  border-radius: 8px;
+  height: 35px;
+  font-weight: 700;
+}
+
+.btn-light {
+  background: #cecece;
+  color: map-get($map: $black-color-variants, $key: 100);
+  border-radius: 8px;
+  height: 35px;
+  font-weight: 700;
+}
+
+.grey-section {
+  background: map-get($map: $white-color-variants, $key: A400);
+  min-height: 70px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.eye {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.file-upload-hints {
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.green-bar .mat-progress-bar-fill::after {
+  background-color: map-get($map: $green-color-variants, $key: 100) !important;
+}
+
+.red-bar .mat-progress-bar-fill::after {
+  background-color: map-get($map: $red-color-variants, $key: 200) !important;
+}
+
+.mat-progress-bar .mat-progress-bar-element {
+  height: 70% !important;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
+.w-35 {
+  width: 35%;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.hyperLinkStyle {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #0000EE;
+}

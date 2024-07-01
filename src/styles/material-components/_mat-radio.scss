@@ -1,0 +1,86 @@
+@import "../colors";
+
+@mixin mat-radio-scss {
+  // #custom-radio-btn {
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: map-get($map: $SAAR-custom-blue, $key: 950);
+  }
+  .custom-radio-btn .mat-radio-label {
+    margin-right: 7px;
+  }
+  .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    color: map-get($map: $SAAR-custom-blue, $key: 950);
+    background-color: map-get($map: $SAAR-custom-blue, $key: 950);
+  }
+  .mt-40 .mat-radio-button {
+    margin: 8px;
+  }
+  .custom-radio-btn {
+    .mat-radio-checked.mat-radio-button {
+      background-color: map-get($gray-color-variants, $key: 800) !important;
+      border-radius: 30px;
+      padding: 6px 10px;
+      margin: 5px;
+      border-style: none;
+      color: map-get($map: $SAAR-custom-blue, $key: A800);
+
+      > .mat-radio-label {
+        > .mat-radio-container {
+          // display: block;
+          display: none;
+        }
+      }
+    }
+
+    .mat-radio-button {
+      border-style: solid;
+      border-color: map-get($map: $gray-color-variants, $key: 500);
+      border-width: 1px;
+      border-radius: 18px;
+      padding: 6px 10px;
+      margin: 5px;
+      color: #9c9c9c;
+
+      > .mat-radio-label {
+        > .mat-radio-container {
+          display: none;
+        }
+      }
+    }
+
+    .mat-radio-container {
+      height: 14px;
+      width: 15px;
+    }
+
+    .mat-radio-outer-circle {
+      height: 14px;
+      width: 14px;
+      border-width: 1px;
+    }
+
+    .mat-radio-inner-circle {
+      height: 14px;
+      width: 13px;
+    }
+
+    .mat-radio-button .mat-radio-ripple {
+      height: 26px;
+      /*double of your required circle radius*/
+      width: 26px;
+      /*double of your required circle radius*/
+      left: calc(50% - 10px);
+      /*'10px'-same as your required circle radius*/
+      top: calc(50% - 10px);
+      /*'10px'-same as your required circle radius*/
+    }
+
+    .mat-radio-label-content {
+      font-size: 12px;
+    }
+  }
+  .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    opacity: 0 !important;
+  }
+  // }
+}

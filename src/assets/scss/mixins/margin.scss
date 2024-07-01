@@ -1,0 +1,4 @@
+// styles.scss or component-specific .scss file
+@mixin margin($top , $right , $bottom , $left) {
+    margin: $top $right $bottom $left !important;
+}

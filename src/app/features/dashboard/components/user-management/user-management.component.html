@@ -1,0 +1,118 @@
+<div class="main-container">
+  <div class="page-header">
+    <h2 class="standard-text">User Management</h2>
+    <p class="subtitle grey-text">
+      Manage your users and their account permissions here
+    </p>
+  </div>
+
+  <div class="grid-section">
+    <div
+      class="grid-filters"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="sub-header">
+        <p class="standard-text f-18 fw-600">
+          All users ({{ usersList?.length }})
+        </p>
+      </div>
+
+      <div class="filters-div" fxLayout="row" fxLayoutGap="14px">
+        <div class="search-bar">
+          <mat-form-field
+            class="example-full-width"
+            appearance="outline"
+            id="search-inp"
+          >
+            <!-- <mat-label>Search</mat-label> -->
+            <input matInput />
+            <mat-icon matPrefix class="search-icon">search</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <button mat-stroked-button class="secondary-btn">
+          <mat-icon>filter_list</mat-icon>
+          <span>Filters</span>
+        </button>
+
+        <button mat-stroked-button class="primary-btn" (click)="addUser()">
+          <mat-icon>add</mat-icon>
+          <span>Add User</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z0"
+        id="users-list"
+      >
+        <!-- Name Column -->
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef>Username</th>
+          <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef>Date Added</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.createdAt | date }}
+          </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="isActive">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">
+            <div [ngClass]="element.isActive ? 'active-chip' : 'inactive-chip'">
+              {{ element.isActive ? "Active" : "Inactive" }}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="permissions">
+          <th mat-header-cell *matHeaderCellDef>Permissions</th>
+          <td mat-cell *matCellDef="let element">
+            <div [ngClass]="getChipColor(element.permissions)">
+              {{ element.permissions }}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="icons-row" fxLayout="row" fxLayoutGap="18px">
+              <mat-icon (click)="deleteUser(element)">delete_outline</mat-icon>
+              <mat-icon (click)="editUser(element)">edit_outline</mat-icon>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [length]="resultsLength"
+        [pageIndex]="currentPage"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageChanged($event)"
+        aria-label="Select page"
+        class="mat-elevation-z0 orders-grid-paginator custompaginator"
+        id="custom-paginator"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>

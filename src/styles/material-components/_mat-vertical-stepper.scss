@@ -1,0 +1,138 @@
+@import "../colors";
+
+@mixin mat-vertical-stepper-scss {
+  // .cash-back-promo-stepper
+  //   .disabled-link.mat-step-header[aria-labelledby="true"] {
+  //   background-color: transparent;
+  // }
+  .cash-back-promo-stepper {
+    height: 300px;
+    background: map-get($map: $SAAR-custom-white, $key: A100);
+    border-bottom: 1px solid map-get($map: $SAAR-custom-white, $key: A800);
+    border-radius: 2px;
+    position: fixed;
+    > .mat-step-text-label {
+      color: map-get($map: $black-color-variants, $key: 300);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .child .label-selected {
+      color: unset !important;
+    }
+
+    .child  {
+      .label-selected {
+        a {
+          color: black !important;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .mat-vertical-content {
+      padding: 0px;
+    }
+
+    .mat-step-header[aria-labelledby="true"] {
+      background-color: #eadeff;
+      border-radius: 8px 0px 0px 8px;
+      height: 8px;
+    }
+    .child .mat-step-header[aria-labelledby="true"] {
+      background-color: map-get($map: $SAAR-custom-white, $key: A100);
+      height: 18px;
+    }
+    .child .mat-step-header[aria-labelledby="true"] {
+      height: 18px;
+    }
+    .mat-vertical-stepper-header {
+      padding: 16px 24px 16px 12px !important;
+      margin-top: -10px;
+      margin-bottom: -2px;
+    }
+    .mat-step-header {
+      height: 18px;
+      cursor: auto;
+      -webkit-tap-highlight-color: red !important;
+    }
+    // .mat-step-header[aria-labelledby="true"] a {
+    //   font-weight: bold;
+    // }
+    .mat-step-header:hover:not([aria-disabled]),
+    .mat-step-header:hover[aria-disabled="false"] {
+      background: none;
+    }
+    .mat-step-header .mat-step-icon  {
+      background-color: #E9E9E9;
+    }
+    .mat-step-header .mat-step-icon-selected  {
+      background-color: #E9E9E9;
+    }
+  }
+
+  .nested-stepper {
+    background: transparent;
+
+    > .mat-step-text-label {
+      color: map-get($map: $black-color-variants, $key: 300);
+      font-size: 12px;
+    }
+
+    .mat-step-header .mat-step-icon  {
+      background-color: #E9E9E9;
+    }
+
+    .mat-step-header .mat-step-icon-selected  {
+      background-color: #E9E9E9;
+    }
+  }
+  .mat-step-header .mat-step-icon {
+    // content: url("../../assets/icons/campaignflow/plan/scheduling.svg");
+  }
+  .mat-step-header .mat-step-icon-state-done,
+  .mat-step-header .mat-step-icon-state-edit {
+    background-color: map-get($map: $SAAR-custom-blue, $key: A70);
+  }
+  .mat-step-header .mat-step-icon-selected {
+    background-color: map-get($map: $black-color-variants, $key: 100);
+    // content: url("../../assets/icons/campaignflow/plan/scheduling.svg");
+  }
+  .child .mat-step-header .mat-step-icon {
+    display: none;
+  }
+  .child .mat-stepper-vertical-line {
+    display: none;
+  }
+  .mat-step-header .mat-step-icon {
+    border-radius: 50%;
+    // height: 19px;
+    // width: 19px;
+    // flex-shrink: 0;
+    // position: relative;
+    // font-size: 10px;
+  }
+  .mat-step-header[aria-labelledby="false"]
+    ~ .mat-stepper-vertical-line::before {
+    border-left-color: map-get($map: $SAAR-custom-blue, $key: A70);
+    margin-bottom: 12px;
+  }
+  .mat-step-header ~ .mat-stepper-vertical-line::before {
+    border-left-color: map-get($map: $SAAR-custom-blue, $key: A70);
+    margin-top: 2px;
+    margin-bottom: 8px;
+  }
+
+  .mat-step-header[aria-labelledby="true"]
+    ~ .mat-stepper-vertical-line::before {
+    border-left-color: map-get($map: $SAAR-custom-white, $key: A500);
+    margin-top: 10px;
+    margin-right: 50px;
+  }
+
+  .mat-stepper-vertical-line {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 24px !important;
+  }
+}

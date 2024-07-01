@@ -1,0 +1,26 @@
+@use "@angular/material" as mat;
+@include mat.core();
+@import './colors';
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+// map-get($map: $black-color-variants, $key: 300)
+
+$backoffice-primary: mat.define-palette($black-color-variants, 300);
+$backoffice-accent: mat.define-palette($SAAR-custom-pink, 500);
+$backoffice-warn: mat.define-palette(mat.$red-palette);
+
+$backoffice-theme: mat.define-light-theme((color: (primary: $backoffice-primary,
+                accent: $backoffice-primary,
+                warn: $backoffice-warn,
+            ),
+        ));
+
+$backoffice-primary-dark: mat.define-palette($SAAR-custom-blue, 500);
+// $backoffice-accent-dark: mat.define-palette($mat-yellow, 500);
+$backoffice-warn-dark: mat.define-palette(mat.$red-palette);
+
+
+$backoffice-theme-dark: mat.define-dark-theme((color: (primary: $backoffice-primary,
+                accent: $backoffice-accent,
+                warn: $backoffice-warn,
+            )));

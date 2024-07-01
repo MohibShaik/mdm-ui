@@ -1,1 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import "./styles/colors";
+@include mat.core();
+@import './styles/custom-theme.scss';
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+@import "./assets/scss/reusable";
+// @import "./assets/scss/override";
+// @import "./styles/common.scss";
+@import "./styles/colors";
+@import 'ngx-toastr/toastr';
+
+// material components
+@import "./styles/material-components/mat-toolbar";
+@import "./styles/material-components/mat-card";
+@import "./styles/material-components/mat-expansion-panel";
+@import "./styles/material-components/mat-menu";
+@import "./styles/material-components/mat-vertical-stepper";
+@import "./styles/material-components/mat-check-box";
+@import "./styles/material-components/mat-radio";
+@import "./styles/material-components/mat-chip";
+@import "./styles/material-components/mat-tab";
+@import "./styles/material-components/mat-input";
+@import "./styles/material-components/mat-list";
+@import "./styles/material-components/mat-toggle";
+@import "./styles/material-components/mat-tooltip";
+@import "./styles/material-components/mat-dialog";
+@import "./styles/material-components/mat-select";
+@import "./styles/material-components/mat-table";
+
+
+@include mat-toolbar-scss;
+@include mat-card-scss;
+@include mat-expansion-panel-scss;
+@include mat-menu-scss;
+@include mat-vertical-stepper-scss;
+@include mat-check-box-scss;
+@include mat-radio-scss;
+@include mat-chip-scss;
+@include mat-tab-scss;
+@include mat-input-scss;
+@include mat-list-scss;
+@include mat-toggle-scss;
+@include mat-tooltip-scss;
+@include mat-dialog-scss;
+@include mat-select-scss;
+@include mat-table-scss;
+
+
+$custom-font-family: "'Plus Jakarta Sans', sans-serif";
+
+* {
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $custom-font-family;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background: #FBFAF7;
+}
+
+$my-typography: mat.define-typography-config($font-family: $custom-font-family,
+    $headline-1: mat.define-typography-level(112px, 112px, 600, $letter-spacing: -0.05em),
+    $headline-2: mat.define-typography-level(56px, 56px, 600, $letter-spacing: -0.02em),
+    $headline-3: mat.define-typography-level(45px, 48px, 600, $letter-spacing: -0.005em),
+    $headline-4: mat.define-typography-level(34px, 40px, 600),
+    $headline-5: mat.define-typography-level(24px, 32px, 600),
+    $headline-6: mat.define-typography-level(24px, 32px, 600),
+  );
+@include mat.typography-hierarchy($my-typography);
+@include mat.all-component-themes($backoffice-theme);

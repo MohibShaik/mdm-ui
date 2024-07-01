@@ -1,0 +1,19 @@
+@import "../colors";
+
+@mixin mat-toolbar-scss {
+
+    // .mat-toolbar-row,
+    // .mat-toolbar-single-row {
+    //     display: flex;
+    //     box-sizing: border-box;
+    //     width: 100%;
+    //     height: 65px;
+    //     flex-direction: row;
+    //     align-items: center;
+    //     white-space: nowrap;
+    //     background-color: map-get($map: $white-color-variants, $key:600);
+    //     border-bottom: 1px solid map-get($map: $white-color-variants, $key:400);
+    //     color: map-get($map: $black-color-variants, $key:600);
+    //     padding: 0 1.563rem !important;
+    // }
+}

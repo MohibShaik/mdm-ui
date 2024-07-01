@@ -1,0 +1,71 @@
+@import "../colors";
+
+@mixin mat-expansion-panel-scss {
+  .side-nav-expansion-panel {
+    background: transparent;
+    box-shadow: none !important;
+    border-radius: 0px !important;
+
+    .mat-expansion-panel-header-description,
+    .mat-expansion-indicator::after {
+      color: map-get($map: $black-color-variants, $key: 200);
+    }
+
+    .mat-expansion-panel-header-title {
+      color: map-get($map: $black-color-variants, $key: 200);
+    }
+
+    .mat-menu-panel {
+      background: map-get($map: $black-color-variants, $key: 400) !important;
+    }
+  }
+
+  .game-subgames-expansion-panel {
+    width: 100%;
+    background: #e0e0e0;
+    .mat-expansion-panel-header-title {
+      font-size: 12px;
+    }
+    .mat-expansion-indicator::after {
+      margin-top: -6px;
+    }
+  }
+
+  .view-comm-expansion-panel {
+    background: #f2f1f1;
+    box-shadow: none !important;
+    .mat-expansion-panel-header {
+      padding: 0px 6px;
+      font-size: 13px;
+      font-weight: 700;
+      height: 22px;
+    }
+    .mat-expansion-panel-header:hover {
+      background: none !important;
+    }
+    .mat-expansion-panel-header-title {
+      cursor: default;
+    }
+    .mat-expansion-panel-header.mat-expanded {
+      height: 22px;
+    }
+    .mat-content {
+      margin-right: 16px;
+      color: #8B64C6;
+      ;
+    }
+    .mat-expansion-indicator::after {
+      color: #8B64C6;
+      margin-bottom: 4px;
+    }
+    .mat-expansion-panel-body {
+      padding: 0px;
+    }
+  }
+
+  .awardSlabs-panel {
+    .mat-expansion-panel-body {
+      padding: 0px;
+    }
+  }
+}

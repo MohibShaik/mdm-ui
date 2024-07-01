@@ -1,0 +1,22 @@
+@import "../colors";
+
+@mixin mat-list-scss {
+    #games-list {
+        .mdc-list-item__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-bar {
+            width: 100px;
+        }
+
+        .mat-mdc-list-item-icon {
+            margin-top: 36px;
+        }
+
+
+
+    }
+}

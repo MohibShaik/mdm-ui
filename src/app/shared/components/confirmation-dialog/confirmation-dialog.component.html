@@ -1,0 +1,28 @@
+<div class="main-container">
+  <h1 mat-dialog-title class="f-20 fw-600 m-0">{{ config?.headerText }}</h1>
+  <div mat-dialog-content>
+    <p>{{ config?.message }}</p>
+  </div>
+
+  <div mat-dialog-actions>
+    <div class="btn-wrapper" fxLayout="row" fxLayoutGap="16px">
+      <button
+        mat-raised-button
+        color="secondary"
+        class="w-50"
+        (click)="close()"
+      >
+        Cancel
+      </button>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="w-50 custom-btn"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened class="mat-elevation-z8">
+    <div class="title-section" fxLayout="row" fxLayoutAlign="center center">
+      <h2>
+        <span class="bold-text">MDM</span><span class="light-text">UI</span>
+      </h2>
+    </div>
+
+    <div class="nav-list">
+      <mat-nav-list>
+        <ng-container *ngFor="let item of navLinks">
+          <mat-list-item
+            [routerLink]="item.route"
+            [routerLinkActive]="['is-active']"
+            #rla="routerLinkActive"
+          >
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <button mat-icon-button>
+                <mat-icon
+                  [svgIcon]="rla.isActive ? item.activeIcon : item.iconName"
+                  class="nav-icon"
+                ></mat-icon>
+              </button>
+              <p mat-line *ngIf="isExpanded" class="nav-item-title m-0 standard-text">
+                {{ item.displayName }}
+              </p>
+            </div>
+          </mat-list-item>
+        </ng-container>
+
+        <!-- <mat-card class="mat-elevation-z8 align-bottom">
+          <mat-card-content>
+            <p class="f-13 fw-600 mtb-10">Go unlimited with PRO</p>
+            <small class="small-text"
+              >Get your AI Project to another level and start doing more with
+              <span class="fw-600 f-13">SAAR</span> PRO!</small
+            >
+            <a class="secondary-btn standard-text pro-btn">Get started with PRO</a>
+          </mat-card-content>
+        </mat-card> -->
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content-wrapper">
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+      <app-footer></app-footer>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

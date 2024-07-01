@@ -1,0 +1,29 @@
+@import "../colors";
+
+@mixin mat-select-scss {
+    .multi-select-dropdown {
+        .mat-select-value {
+            margin-top: -8px;
+        }
+    }
+
+
+    .awarding-event-option {
+        border-bottom: 1px solid #E9E9E9;
+        margin-bottom: 1px;
+
+        .mat-pseudo-checkbox {
+            left: 170px !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .mat-pseudo-checkbox::after {
+            color: #8B64C6 !important;
+        }
+    }
+
+    .mat-selected {
+        border-left: 4px solid #8B64C6 !important;
+    }
+}

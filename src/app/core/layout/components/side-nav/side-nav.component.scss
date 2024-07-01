@@ -1,0 +1,107 @@
+@import "../../../../../styles/colors";
+
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: map-get($map: $white-color-variants, $key: 100);
+
+    >.mat-sidenav {
+        // margin: 1rem;
+        border-radius: 0.625rem;
+        min-width: 14.5rem;
+        background-color: map-get($map: $white-color-variants, $key: 300);
+
+        .title-section {
+            min-height: 12%;
+            border-bottom: 1px solid #eee;
+
+            .bold-text {
+                font-weight: 800;
+                letter-spacing: 1.8px;
+                color: map-get($map: $black-color-variants, $key: 200);
+                // margin-right: 0.5rem;
+            }
+
+            .light-text {
+                font-weight: 400;
+                color: map-get($map: $black-color-variants, $key: 200);
+            }
+        }
+
+        .mat-mdc-nav-list {
+
+            .is-active {
+                font-weight: 800;
+            }
+
+            .mat-mdc-list-item {
+                font-size: 14px;
+                margin: 10px 0;
+            }
+
+            .align-bottom {
+                position: absolute;
+                bottom: 16px;
+                left: 10px;
+                right: 10px;
+                border-radius: 8px;
+                background: linear-gradient(364deg, rgb(234, 234, 234) 20%, rgb(100, 149, 237) 75%);
+                color: map-get($map: $black-color-variants, $key: 200);
+
+                >.mat-mdc-card-content {
+                    text-align: center;
+
+                    >.mtb-10 {
+                        margin: 10px 0;
+                    }
+                }
+            }
+        }
+    }
+
+    >.mat-sidenav-content {
+
+        .content-wrapper {
+            padding: 0 32px;
+
+            .content {
+                height: calc(100vh - 36px);
+            }
+        }
+
+        // margin-left: 15rem !important;
+    }
+
+    .toolbar-card {
+        // width: 20%;
+        min-height: 3.125rem;
+        border-radius: 3.75rem;
+        margin: 1.5rem;
+
+        .icons-list {
+            display: flex;
+            gap: 24px;
+
+            mat-icon {
+                color: #808080;
+            }
+        }
+    }
+
+    .nav-item-title {
+        color: map-get($map: $black-color-variants, $key: 200);
+    }
+
+    .pro-btn {
+        display: block;
+        margin-top: 14px;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 8px 0px;
+        border-radius: 16px;
+    }
+
+}

@@ -1,0 +1,51 @@
+@import "../../styles/colors";
+
+.w-50 {
+    width: 50%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.m-0 {
+    margin: 0px !important;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.grey-text {
+    color: map-get($map: $gray-color-variants, $key: 100);
+}
+
+.standard-text {
+    color: map-get($map: $black-color-variants, $key: 200);
+}
+
+.f-18 {
+    font-size: 18px;
+}
+
+.f-20 {
+    font-size: 20px !important;
+}
+
+.fw-600 {
+    font-weight: 600 !important;
+}
+
+.secondary-btn {
+    border: 1px solid map-get($map: $gray-color-variants, $key: 100) !important;
+    color: map-get($map: $black-color-variants, $key: 200) !important;
+    background: transparent !important;
+    border-radius: 8px !important;
+}
+
+.primary-btn {
+    border: 1px solid map-get($map: $gray-color-variants, $key: 100) !important;
+    color: map-get($map: $white-color-variants, $key: 300) !important;
+    background: map-get($map: $black-color-variants, $key: 200) !important;
+    border-radius: 8px !important;
+}

@@ -1,0 +1,91 @@
+@import "../colors";
+
+@mixin mat-check-box-scss {
+  #custom-checkbox {
+    .mat-checkbox-ripple .mat-ripple-element,
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+      background-color: map-get($gray-color-variants, $key: 800) !important;
+    }
+
+    .mat-checkbox-checked.mat-checkbox {
+      background-color: map-get($gray-color-variants, $key: 800) !important;
+      border-radius: 30px;
+      padding: 1px 15px 1px 15px;
+      margin: 5px;
+      border-style: none;
+      color: map-get($map: $SAAR-custom-blue, $key: A800);
+    }
+
+    .mat-checkbox {
+      border-style: solid;
+      border-color: #9c9c9c;
+      border-width: 1px;
+      border-radius: 18px;
+      padding: 1px 15px 1px 1px;
+      margin: 5px;
+      color: #9c9c9c;
+    }
+
+    .mat-checkbox .mat-checkbox-frame {
+      border-width: 0px;
+      border-style: none;
+    }
+
+    .mat-checkbox-checkmark-path {
+      stroke: map-get($map: $SAAR-custom-blue, $key: A800) !important;
+    }
+
+    .mat-checkbox-label {
+      font-size: 12px;
+    }
+
+    .mat-chip.mat-standard-chip .mat-chip-remove {
+      opacity: 1;
+    }
+  }
+
+  #no-border-checkbox {
+    .mat-checkbox-checked {
+      .mat-checkbox-background {
+        background-color: map-get($map: $SAAR-custom-blue, $key: A70);
+      }
+    }
+    .mat-checkbox-layout {
+      padding: 7px;
+    }
+  }
+  .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background{
+    background-color: map-get($map: $SAAR-custom-blue, $key: A70);
+}
+
+  .example-section,
+  .content {
+    .mat-checkbox-checked {
+      .mat-checkbox-background {
+        background-color: map-get($map: $SAAR-custom-blue, $key: A70);
+      }
+    }
+  }
+  .form-checkbox {
+    .mat-checkbox {
+      margin-left: 7px;
+    }
+    .mat-checkbox .mat-checkbox-frame {
+      border: 0.1px solid #c0c0c0;
+      border-radius: 5px;
+      padding: 8px;
+    }
+    .mat-checkbox-checked {
+      .mat-checkbox-background {
+        background: none !important;
+        border: 0.1px solid map-get($map: $SAAR-custom-blue, $key: A70);
+        padding: 8px;
+        border-radius: 5px;
+      }
+    }
+    .mat-checkbox-checkmark-path {
+      stroke: map-get($map: $SAAR-custom-blue, $key: A70) !important;
+      stroke-width: 1.6px !important;
+    }
+  }
+}

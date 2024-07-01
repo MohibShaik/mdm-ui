@@ -1,0 +1,76 @@
+<div class="main-container" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="login-card">
+    <mat-card-content>
+      <div class="header text-center">
+        <h2>Welcome Back</h2>
+        <p class="m-0">Glad to see you again 👋</p>
+        <p>Login to your account below</p>
+      </div>
+
+      <div class="body">
+        <div [formGroup]="loginForm">
+          <div class="input-field" fxLayout="column">
+            <label for="username">Username</label>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <input
+                matInput
+                placeholder="Janesmith"
+                formControlName="username"
+              />
+            </mat-form-field>
+            <div
+              class="error"
+              *ngIf="f['username']?.touched && f['username'].invalid"
+            >
+              <mat-error *ngIf="loginForm.get('username')?.errors"
+                >Username is required</mat-error
+              >
+            </div>
+          </div>
+
+          <div class="input-field" fxLayout="column">
+            <label for="username">Password</label>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <input
+                matInput
+                placeholder="*******"
+                formControlName="password"
+                [type]="passwordType"
+              />
+              <mat-icon
+                matSuffix
+                class="passwordIcon"
+                [svgIcon]="passwordIcon"
+                (click)="hideShowPassword()"
+              ></mat-icon>
+            </mat-form-field>
+            <div
+              class="error"
+              *ngIf="f['password']?.touched && f['password'].invalid"
+            >
+              <mat-error *ngIf="loginForm.get('password')?.errors"
+                >Password is required</mat-error
+              >
+            </div>
+          </div>
+
+          <div class="end-section">
+            <a class="hyper-link" routerLink="/auth/forgot-password"
+              >Forgot Password</a
+            >
+          </div>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="w-100"
+            (click)="login()"
+            [disabled]="loginForm.invalid"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
