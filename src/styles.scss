@@ -54,9 +54,16 @@ $custom-font-family: "'Plus Jakarta Sans', sans-serif";
 }
 
 
+// html,
+// body {
+//   height: 100%;
+// }
+
 html,
 body {
-  height: 100%;
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
 }
 
 body {
@@ -64,7 +71,8 @@ body {
   font-family: $custom-font-family;
   font-optical-sizing: auto;
   font-style: normal;
-  background: #FBFAF7;
+  background: #FAFAFA;
+  color: map-get($map: $black-color-variants, $key: 700);
 }
 
 $my-typography: mat.define-typography-config($font-family: $custom-font-family,
@@ -72,8 +80,8 @@ $my-typography: mat.define-typography-config($font-family: $custom-font-family,
     $headline-2: mat.define-typography-level(56px, 56px, 600, $letter-spacing: -0.02em),
     $headline-3: mat.define-typography-level(45px, 48px, 600, $letter-spacing: -0.005em),
     $headline-4: mat.define-typography-level(34px, 40px, 600),
-    $headline-5: mat.define-typography-level(24px, 32px, 600),
-    $headline-6: mat.define-typography-level(24px, 32px, 600),
+    $headline-5: mat.define-typography-level(28px, 32px, 600),
+    $headline-6: mat.define-typography-level(28px, 32px, 600, $letter-spacing: 0.05em),
   );
 @include mat.typography-hierarchy($my-typography);
 @include mat.all-component-themes($backoffice-theme);

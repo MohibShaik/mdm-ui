@@ -8,18 +8,9 @@ import { CoreModule } from 'src/app/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
-
 @NgModule({
-  declarations: [
-    LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent
-  ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    CoreModule,
-    HttpClientModule
-  ]
+  declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent],
+  imports: [CommonModule, AuthRoutingModule, CoreModule, HttpClientModule],
+  exports: [LoginComponent],
 })
-export class AuthModule { }
+export class AuthModule {}

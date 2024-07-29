@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { authQuery } from 'src/app/features/auth/state/auth.query';
+import { AuthService } from 'src/app/features/auth/state/auth.service';
+import { ConfigService } from 'src/app/standlone/state/config.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -15,27 +19,29 @@ export class SideNavComponent implements OnInit {
     activeIcon: string;
     disabled: boolean;
   }[];
+  public currentUserInfo: any;
+  public sideNavList: any;
 
-  constructor() {}
+  constructor(
+    private configService: ConfigService,
+    private authService: AuthService,
+    private router: Router,
+    private query: authQuery
+  ) {}
 
   ngOnInit(): void {
-    this.navLinks = [
-      {
-        id: 1,
-        displayName: 'User Management',
-        route: '/dashboard/users',
-        iconName: 'user-inactive',
-        activeIcon: 'user-active',
-        disabled: false,
-      },
-      {
-        id: 2,
-        displayName: 'Settings',
-        iconName: 'settings-inactive',
-        route: '/dashboard/settings',
-        activeIcon: 'settings-active',
-        disabled: true,
-      },
-    ];
+    this.getSideNavLinks();
+  }
+
+  private getSideNavLinks() {
+    this.configService.getSideNavLinks().subscribe((response) => {
+      this.sideNavList = response;
+      this.navLinks = this.sideNavList[this.query.currentUserInfo?.role];
+    });
+  }
+
+  public logout() {
+    sessionStorage.clear();
+    this.router.navigateByUrl('/');
   }
 }

@@ -1,0 +1,76 @@
+<div class="main-container">
+  <h1 mat-dialog-title class="f-20 fw-600 m-0">Customer Details</h1>
+  <div mat-dialog-content>
+    <section class="cust-info">
+      <div class="row" fxLayout="row" fxLayoutGap="54px">
+        <div class="col" fxLayout="column" fxLayoutGap="14px">
+          <p class="label-text">First Name</p>
+          <p class="value-text">{{ customerInfo?.firstName }}</p>
+        </div>
+
+        <div class="col" fxLayout="column" fxLayoutGap="14px">
+          <p class="label-text">Last Name</p>
+          <p class="value-text">{{ customerInfo?.lastName }}</p>
+        </div>
+
+        <div class="col" fxLayout="column" fxLayoutGap="14px">
+          <p class="label-text">Email Address</p>
+          <p class="value-text">{{ customerInfo?.email }}</p>
+        </div>
+
+        <div class="col" fxLayout="column" fxLayoutGap="14px">
+          <p class="label-text">Address Details</p>
+          <p class="value-text">{{ customerInfo?.address }}</p>
+        </div>
+
+        <div class="col" fxLayout="column" fxLayoutGap="14px">
+          <p class="label-text">Membership</p>
+          <p class="value-text">{{ customerInfo?.membershipType }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="approval-flow-section">
+      <p class="sub-header f-16 fw-600">Approval Flow</p>
+      <div class="row mt-24" fxLayout="row" fxLayoutGap="54px">
+        <ng-container *ngFor="let e of customerInfo?.approvers">
+          <div class="avator flex-item text-center">
+            <mat-icon
+              [svgIcon]="e?.isApproved ? 'avator-approved' : 'avator'"
+            ></mat-icon>
+            <p class="m-0">{{ e?.approverId?.username }}</p>
+            <p class="f-13 fw-500">({{ e?.isApproved ? "Approved" : "Pending Approval" }})</p>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+
+    <section class="btn-wrapper">
+      <div
+        class="row"
+        fxLayout="row"
+        fxLayoutGap="18px"
+        fxLayoutAlign="end center"
+      >
+        <button
+          mat-raised-button
+          color="secondary"
+          class="reject-btn btn"
+          [disabled]="!hasApprovalAccess"
+        >
+          Reject
+        </button>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="approve-btn custom-btn btn"
+          [disabled]="!hasApprovalAccess"
+          (click)="approve()"
+        >
+          Approve
+        </button>
+      </div>
+    </section>
+  </div>
+</div>

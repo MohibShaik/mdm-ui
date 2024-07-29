@@ -8,63 +8,6 @@ import { User } from 'src/app/features/auth/models/user.model';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
-// const ELEMENT_DATA: any[] = [
-//   {
-//     position: 1,
-//     username: 'Jenny wilson',
-//     email: 'jenny.wilson@gmail.com',
-//     status: 'active',
-//     permissions: 'Manager',
-//   },
-
-//   {
-//     position: 2,
-//     username: 'Andy Flower',
-//     email: 'andy.flower@gmail.com',
-//     status: 'active',
-//     permissions: 'Admin',
-//   },
-
-//   {
-//     position: 3,
-//     username: 'Robert Fox',
-//     email: 'robert.fox@gmail.com',
-//     status: 'active',
-//     permissions: 'Auditor',
-//   },
-//   {
-//     position: 4,
-//     username: 'Andrew wilson',
-//     email: 'Andrew.wilson@gmail.com',
-//     status: 'active',
-//     permissions: 'Auditor',
-//   },
-
-//   {
-//     position: 5,
-//     username: 'Cody Fisher',
-//     email: 'cody.fisher@gmail.com',
-//     status: 'active',
-//     permissions: 'Manager',
-//   },
-
-//   {
-//     position: 6,
-//     username: 'Jaya Wills',
-//     email: 'jaya.wil@gmail.com',
-//     status: 'active',
-//     permissions: 'Auditor',
-//   },
-
-//   {
-//     position: 7,
-//     username: 'Jerome Bell',
-//     email: 'jerome.bell@gmail.com',
-//     status: 'active',
-//     permissions: 'Manager',
-//   },
-// ];
-
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
@@ -80,7 +23,7 @@ export class UserManagementComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     'username',
     'email',
-    'createdAt',
+    'createdDate',
     'isActive',
     'permissions',
     'action',
@@ -127,10 +70,9 @@ export class UserManagementComponent implements OnInit, AfterViewInit {
 
   private getUserData() {
     this.userService.getUsersList().subscribe((data: any) => {
-      console.log(data);
-      this.dataSource = new MatTableDataSource<User>(data);
-      this.resultsLength = data?.length;
-      this.usersList = data;
+      this.dataSource = new MatTableDataSource<User>(data?.response);
+      this.resultsLength = data?.response?.length;
+      this.usersList = data?.response;
       this.dataSource.paginator = this.paginator;
     });
   }

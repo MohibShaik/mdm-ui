@@ -68,7 +68,7 @@ export class UserFormDialogComponent implements OnInit {
 
   public onSubmit() {
     if (this.userInfo) {
-      this.service.updateUser(this.newUserForm.value , this.userInfo?.id).subscribe(
+      this.service.updateUser(this.newUserForm.value , this.userInfo?._id).subscribe(
         (response) => {
           this.toastr.success(response?.message);
           this.dialogRef.close(true);

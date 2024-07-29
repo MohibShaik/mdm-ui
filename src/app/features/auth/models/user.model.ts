@@ -1,10 +1,12 @@
 export interface User {
-  id?: number;
-  username: string;
+  _id: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  permissions: string;
-  isActive?: boolean;
-  password?: string;
-  updatedAt?: string;
-  createdAt?: string;
+  password: string;
+  role: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }

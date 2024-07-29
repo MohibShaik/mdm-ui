@@ -4,6 +4,11 @@
     width: 50%;
 }
 
+
+.h-50 {
+    height: 50%;
+}
+
 .text-center {
     text-align: center;
 }
@@ -36,16 +41,41 @@
     font-weight: 600 !important;
 }
 
+
+.fw-500 {
+    font-weight: 500 !important;
+}
+
+.f-16 {
+    font-size: 16px;
+}
+
+.f-13 {
+    font-size: 13px;
+}
+
+.upper-case {
+    text-transform: uppercase;
+}
+
 .secondary-btn {
-    border: 1px solid map-get($map: $gray-color-variants, $key: 100) !important;
-    color: map-get($map: $black-color-variants, $key: 200) !important;
-    background: transparent !important;
+    border: 1px solid map-get($map: $gray-color-variants, $key: 400) !important;
+    color: map-get($map: $black-color-variants, $key: 700) !important;
+    background: map-get($map: $white-color-variants, $key: 300) !important;
     border-radius: 8px !important;
 }
 
 .primary-btn {
-    border: 1px solid map-get($map: $gray-color-variants, $key: 100) !important;
+    border: 1px solid map-get($map: $black-color-variants, $key: 300) !important;
     color: map-get($map: $white-color-variants, $key: 300) !important;
-    background: map-get($map: $black-color-variants, $key: 200) !important;
+    background: map-get($map: $black-color-variants, $key: 300) !important;
     border-radius: 8px !important;
 }
+
+// .white-btn{
+//     border: 1px solid map-get($map: $gray-color-variants, $key: 400) !important;
+//     color: map-get($map: $black-color-variants, $key: 300) !important;
+//     background: map-get($map: $white-color-variants, $key: 300) !important;
+//     border-radius: 8px !important;
+//     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px;
+// }

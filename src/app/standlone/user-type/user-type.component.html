@@ -1,0 +1,23 @@
+<div
+  class="main-container"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="34px"
+>
+  <div
+    class="sub-title"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="34px"
+  >
+    <p class="f-18 text-center">Please select your</p>
+    <p class="major-text">user type</p>
+  </div>
+  <div class="row" fxLayout="row" fxLayoutGap="34px">
+    <ng-container *ngFor="let e of userTypes">
+      <mat-card class="user-type" (click)="onUserTypeSelection(e.value)">
+        <mat-card-content>{{ e?.viewValue }} </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>

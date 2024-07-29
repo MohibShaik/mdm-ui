@@ -1,0 +1,46 @@
+.input-field {
+    // padding: 24px 0;
+
+    label {
+        padding-bottom: 4px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+}
+
+.btn-wrapper {
+    margin-top: 32px;
+}
+
+.list-item {
+    border: 1px solid #718096;
+    border-radius: 8px 8px 0px 0px;
+
+    .flex-item {
+        flex: 1;
+    }
+}
+
+.add-btn-wrapper {
+    border: 1px solid #718096;
+    border-radius: 0px 0px 8px 8px;
+
+    >.white-btn {
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: blue;
+    }
+}
+
+.btn-wrapper {
+    >.btn {
+        width: 100px;
+    }
+}
+
+.error {
+    font-size: 13px !important;
+}

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from 'src/app/core/layout/components/layout/layout.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 
 const routes: Routes = [
   {
@@ -11,17 +13,21 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'users',
+        redirectTo: 'dashboard',
         pathMatch: 'full',
       },
       {
-        path: 'users',
+        path: 'dashboard',
         component: UserManagementComponent,
+      },
+      {
+        path: 'employees',
+        component: CustomerListComponent,
       },
       {
         path: 'settings',
         component: SettingsComponent,
-      },
+      }
     ],
   },
 ];

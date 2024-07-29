@@ -2,7 +2,7 @@
   <mat-card class="login-card">
     <mat-card-content>
       <div class="header text-center">
-        <h2>Welcome Back</h2>
+        <h2>Hiring</h2>
         <p class="m-0">Glad to see you again 👋</p>
         <p>Login to your account below</p>
       </div>
@@ -10,20 +10,24 @@
       <div class="body">
         <div [formGroup]="loginForm">
           <div class="input-field" fxLayout="column">
-            <label for="username">Username</label>
+            <label for="emailAddress">Email Address</label>
             <mat-form-field class="example-full-width" appearance="outline">
               <input
                 matInput
                 placeholder="Janesmith"
-                formControlName="username"
+                formControlName="emailAddress"
               />
             </mat-form-field>
             <div
               class="error"
-              *ngIf="f['username']?.touched && f['username'].invalid"
+              *ngIf="f['emailAddress']?.touched && f['emailAddress'].invalid"
             >
-              <mat-error *ngIf="loginForm.get('username')?.errors"
-                >Username is required</mat-error
+              <mat-error *ngIf="checkFormError('emailAddress', 'required')"
+                >Email address is required</mat-error
+              >
+
+              <mat-error *ngIf="checkFormError('emailAddress', 'email')"
+                >Invalid email address</mat-error
               >
             </div>
           </div>

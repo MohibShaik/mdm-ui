@@ -1,0 +1,96 @@
+{
+    "admin": [
+        {
+            "id": 0,
+            "displayName": "Dashboard",
+            "iconName": "dashboard",
+            "activeIcon": "dashboard-active",
+            "route": "/home/dashboard",
+            "disabled": false
+        },
+        {
+            "id": 1,
+            "displayName": "Vendors",
+            "iconName": "vendor",
+            "activeIcon": "vendor-active",
+            "route": "/home/vendors",
+            "disabled": false
+        },
+        {
+            "id": 3,
+            "displayName": "Clients",
+            "iconName": "clients",
+            "activeIcon": "clients-active",
+            "route": "/home/clients",
+            "disabled": false
+        },
+        {
+            "id": 4,
+            "displayName": "Employees",
+            "iconName": "employees",
+            "activeIcon": "employees-active",
+            "route": "/home/employees",
+            "disabled": false
+        },
+        {
+            "id": 5,
+            "displayName": "Settings",
+            "iconName": "settings-inactive",
+            "activeIcon": "settings-active",
+            "route": "/home/settings",
+            "disabled": false
+        }
+    ],
+    "vendor": [
+        {
+            "id": 0,
+            "displayName": "Dashboard",
+            "iconName": "dashboard",
+            "activeIcon": "dashboard-active",
+            "route": "/home/dashboard",
+            "disabled": false
+        },
+        {
+            "id": 1,
+            "displayName": "Employees",
+            "iconName": "employees",
+            "activeIcon": "employees-active",
+            "route": "/home/employees",
+            "disabled": false
+        },
+        {
+            "id": 2,
+            "displayName": "Settings",
+            "iconName": "settings-inactive",
+            "activeIcon": "settings-active",
+            "route": "/home/settings",
+            "disabled": false
+        }
+    ],
+    "employee": [
+        {
+            "id": 0,
+            "displayName": "Dashboard",
+            "iconName": "dashboard",
+            "activeIcon": "dashboard-active",
+            "route": "/home/dashboard",
+            "disabled": false
+        },
+        {
+            "id": 1,
+            "displayName": "Clients",
+            "iconName": "clients",
+            "activeIcon": "clients-active",
+            "route": "/home/clients",
+            "disabled": false
+        },
+        {
+            "id": 2,
+            "displayName": "Settings",
+            "iconName": "settings-inactive",
+            "activeIcon": "settings-active",
+            "route": "/home/settings",
+            "disabled": false
+        }
+    ]
+}

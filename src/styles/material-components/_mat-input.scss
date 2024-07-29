@@ -44,4 +44,10 @@
   .mat-mdc-form-field-error {
     display: flex !important;
   }
+
+  .custom-input-field {
+    .mat-mdc-text-field-wrapper {
+      height: 48px !important;
+    }
+  }
 }

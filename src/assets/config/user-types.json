@@ -1,0 +1,14 @@
+[
+    {
+        "value": "admin",
+        "viewValue": "Admin"
+    },
+    {
+        "value": "employee",
+        "viewValue": "Employee"
+    },
+    {
+        "value": "vendor",
+        "viewValue": "Vendor"
+    }
+]

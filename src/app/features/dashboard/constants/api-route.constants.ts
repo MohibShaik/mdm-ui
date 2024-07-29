@@ -3,4 +3,11 @@ const api = '/api';
 export const endPoint = {
   usersList: `${api}/users`,
   deleteUser: (userId: number) => `${api}/users/${userId}`,
+  customersList: `${api}/customers`,
+  updateCustomer: (customerId: number) => `${api}/customers/${customerId}`,
+
+  employeesList: (pageIndex: number, pageSize: number) =>
+    `${api}/employees?pageIndex=${pageIndex}&pageSize=${pageSize}`,
+
+  newEmployee : `${api}/saveNewEmp`
 };

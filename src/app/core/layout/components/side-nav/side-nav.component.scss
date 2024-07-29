@@ -1,11 +1,78 @@
 @import "../../../../../styles/colors";
 
+.main-container {
+    .toolbar {
+        margin: 0px;
+
+        >.mat-toolbar {
+            background: map-get($map: $white-color-variants, $key: 300) !important;
+            height: 75px;
+        }
+
+        .title-text {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: map-get($map: $black-color-variants, $key: 100);
+            padding-left: 42px;
+        }
+
+        .grey {
+            color: map-get($map: $black-color-variants, $key: 500);
+        }
+    }
+
+    .mat-mdc-nav-list {
+        padding: 32px 0;
+
+        >.mat-mdc-list-item {
+            margin: 10px 0;
+        }
+    }
+
+    .active-link {
+        background-color: rgb(255, 248, 242) !important;
+    }
+
+    .logout-nav-item {
+        position: absolute;
+        bottom: 10px;
+    }
+
+    .example-sidenav-content {
+        padding: 24px !important;
+        height: 100%;
+    }
+
+    .nav-item-title {
+        color: map-get($map: $black-color-variants, $key: 200);
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .active-nav-item-title {
+        color: map-get($map: $black-color-variants, $key: 300);
+    }
+
+    .full-width-sidenav {
+        min-width: 210px;
+    }
+}
+
+.sidenav-container {
+    height: calc(100vh - 75px);
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
 .example-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
     background: map-get($map: $white-color-variants, $key: 100);
 
     >.mat-sidenav {
@@ -62,19 +129,6 @@
         }
     }
 
-    >.mat-sidenav-content {
-
-        .content-wrapper {
-            padding: 0 32px;
-
-            .content {
-                height: calc(100vh - 36px);
-            }
-        }
-
-        // margin-left: 15rem !important;
-    }
-
     .toolbar-card {
         // width: 20%;
         min-height: 3.125rem;
@@ -91,17 +145,6 @@
         }
     }
 
-    .nav-item-title {
-        color: map-get($map: $black-color-variants, $key: 200);
-    }
 
-    .pro-btn {
-        display: block;
-        margin-top: 14px;
-        font-size: 12px;
-        font-weight: 600;
-        padding: 8px 0px;
-        border-radius: 16px;
-    }
 
 }

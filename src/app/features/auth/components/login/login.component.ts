@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../state/auth.service';
@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  @Output() onSignIn = new EventEmitter();
+
   public loginForm!: FormGroup;
   public passwordType: string = 'password';
   public passwordIcon: string = 'eye_off';
@@ -31,7 +33,7 @@ export class LoginComponent {
 
   public initializeLoginForm() {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
+      emailAddress: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
@@ -41,16 +43,25 @@ export class LoginComponent {
     this.passwordIcon = this.passwordIcon === 'eye_off' ? 'eye_on' : 'eye_off';
   }
 
+  public checkFormError = (controlName: string, errorName: string) => {
+    return this.loginForm?.controls[controlName].hasError(errorName);
+  };
+
   public login() {
     if (this.loginForm.invalid) {
       return;
     } else {
       this.authService.login(this.loginForm.value).subscribe(
         (response: any) => {
-          sessionStorage.setItem('accessToken', response?.accessToken);
-          this.router.navigateByUrl('/dashboard');
+          sessionStorage.setItem('accessToken', response?.data.accessToken);
+          sessionStorage.setItem('user_name', response?.data.username);
+          sessionStorage.setItem('user_id', response?.data._id);
+          // sessionStorage.setItem('user_type', response?.data.role);
+          this.router.navigateByUrl('/home');
+          // this.onSignIn.emit(true);
         },
         (error) => {
+          // this.onSignIn.emit(false);
           console.log(error);
         }
       );

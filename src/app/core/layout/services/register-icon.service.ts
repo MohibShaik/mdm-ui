@@ -24,25 +24,107 @@ export class RegisterIconService {
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/users-active.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `settings-inactive`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/settings-inactive.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `settings-active`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/settings-active.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `eye_off`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/eye-off.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `eye_on`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/eye-on.svg'
+        )
+      )
+      .addSvgIcon(
+        `avator`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/avator.svg'
+        )
+      )
+      .addSvgIcon(
+        `avator-approved`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/approved-avator.svg'
+        )
+      )
+      .addSvgIcon(
+        `message`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/message.svg'
+        )
+      ).addSvgIcon(
+        `notification`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/notification.svg'
+        )
+      ).addSvgIcon(
+        `dashboard`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/dashboard.svg'
+        )
+      ).addSvgIcon(
+        `dashboard-active`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/dashboard-active.svg'
+        )
+      ).addSvgIcon(
+        `employees-active`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/employees-active.svg'
+        )
+      ).addSvgIcon(
+        `employees`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/employees.svg'
+        )
+      ).addSvgIcon(
+        `logout`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/logout.svg'
+        )
+      ).addSvgIcon(
+        `logout-active`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/logout-active.svg'
+        )
+      ).addSvgIcon(
+        `vendor`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/vendor.svg'
+        )
+      ).addSvgIcon(
+        `vendor-active`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/vendor-active.svg'
+        )
+      ).addSvgIcon(
+        `clients`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/clients.svg'
+        )
+      ).addSvgIcon(
+        `clients-active`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/clients-active.svg'
+        )
+      ).addSvgIcon(
+        `user-avator`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/user-square-svgrepo-com.svg'
         )
       );
   }

@@ -1,0 +1,129 @@
+<div class="main-container">
+  <div class="page-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <p class="standard-text page-title">Employees</p>
+
+    <div class="btns-div">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addUser()"
+        class="primary-btn"
+      >
+        <mat-icon>add</mat-icon>
+        <span>Add New Employee</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="tabs-div">
+    <div class="grd-wrapper">
+      <div
+        class="filters-wrapper"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <div class="flex-item" fxLayout="row" fxLayoutGap="24px">
+          <div class="search-bar">
+            <mat-form-field
+              class="example-full-width"
+              appearance="outline"
+              id="search-inp"
+            >
+              <input matInput />
+              <mat-icon matPrefix class="search-icon">search</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <button mat-stroked-button class="secondary-btn">
+            <mat-icon>filter_list</mat-icon>
+            <span>Filters</span>
+          </button>
+        </div>
+
+        <div class="flex-item" fxLayout="row" fxLayoutGap="24px">
+          <button mat-stroked-button class="secondary-btn">
+            <mat-icon>filter_list</mat-icon>
+            <span>Newest First</span>
+          </button>
+
+          <button mat-stroked-button class="secondary-btn">
+            <!-- <mat-icon>filter_list</mat-icon> -->
+            <span>Last 30 days</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div
+          fxLayout="row"
+          fxLayoutWrap
+          fxLayoutGap="16px"
+          fxLayoutAlign="start"
+        >
+          <mat-card
+            *ngFor="let item of usersList"
+            class="emp-card"
+            fxLayout="column"
+            fxLayoutGap="12px"
+          >
+            <div class="row" fxLayout="row" fxLayoutGap="12px">
+              <div class="avator">
+                <mat-icon svgIcon="user-avator" class="large-icon"></mat-icon>
+              </div>
+
+              <div class="info" fxLayout="column">
+                <p class="dark-text">
+                  {{ item.userInfo[0]?.firstName }}
+                  {{ item.userInfo[0]?.lastName }}
+                </p>
+                <p class="grey-text">{{ item.designation }}</p>
+              </div>
+            </div>
+
+            <div class="row" fxLayout="row" fxLayoutGap="12px">
+              <div class="info" fxLayout="column">
+                <p class="chip-text">
+                  {{ item.skills[0] }}
+                </p>
+              </div>
+            </div>
+
+            <div class="row" fxLayout="column" fxLayoutGap="12px">
+              <div class="flex-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Emp Code</p>
+                :
+                <p class="m-0 value-text">{{ item.empCode }}</p>
+              </div>
+
+              <div class="flex-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="m-0 label-text">Email Address</p>
+                :
+                <p class="m-0 value-text">{{ item.userInfo[0]?.email }}</p>
+              </div>
+
+              <div class="flex-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="m-0 label-text">Status</p>
+                :
+                <p class="m-0 value-text">
+                  {{ item.userInfo[0]?.isActive ? "Active" : "Inactive" }}
+                </p>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+
+        <!-- <mat-paginator
+          [length]="resultsLength"
+          [pageIndex]="currentPage"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="pageSizeOptions"
+          (page)="pageChanged($event)"
+          aria-label="Select page"
+          class="mat-elevation-z0 orders-grid-paginator custompaginator"
+          id="custom-paginator"
+        >
+        </mat-paginator> -->
+      </div>
+    </div>
+  </div>
+</div>

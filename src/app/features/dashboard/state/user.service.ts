@@ -19,7 +19,7 @@ export class UserService {
   }
 
   public deleteUser(userInfo: any): Observable<any> {
-    return this.http.delete(endPoint.deleteUser(userInfo?.id));
+    return this.http.delete(endPoint.deleteUser(userInfo?._id));
   }
 
   public updateUser(userInfo: any , id:number): Observable<any> {

@@ -1,0 +1,123 @@
+@import "../../../../../styles/colors";
+
+mat-card {
+    margin: 8px;
+}
+
+.large-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.emp-card {
+    min-width: 210px;
+    padding: 16px;
+    border-radius: 8px;
+
+    .dark-text {
+        font-size: 15px;
+        font-weight: 700;
+        color: map-get($map: $black-color-variants, $key: 200);
+        margin: 0px !important;
+    }
+
+    .grey-text {
+        font-size: 13px;
+        font-weight: 400;
+        color: map-get($map: $black-color-variants, $key: 500);
+        margin: 0px !important;
+    }
+
+    .chip-text {
+        background: rgb(255, 248, 242) !important;
+        color: #ef5133;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+
+    .label-text {
+        font-size: 14px;
+        font-weight: 700;
+        color: map-get($map: $black-color-variants, $key: 200);
+        margin: 0px !important;
+    }
+
+    .value-text {
+        font-size: 14px;
+        font-weight: 400;
+        color: map-get($map: $black-color-variants, $key: 500);
+        margin: 0px !important;
+    }
+
+    .flex-item {
+        gap: 10px;
+    }
+}
+
+.main-container {
+    // padding-top: 32px;
+
+    .page-header {
+        .page-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: map-get($map: $black-color-variants, $key: 900);
+        }
+    }
+
+    .tabs-div {
+        margin-top: 28px;
+    }
+
+    .grd-wrapper {
+        // margin-top: 32px;
+
+        .grid {
+            margin-top: 24px;
+
+            .custom-chip {
+                height: 30px;
+                display: flex;
+                border-radius: 8px;
+                width: 90px;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                text-transform: capitalize;
+            }
+
+            .admin-chip {
+                background: #E6E6FA;
+            }
+
+            .creator-chip {
+                background: #FFF8DC;
+            }
+
+            .checker-chip {
+                background: #B0E2FF;
+            }
+
+            .user-chip {
+                background: #8EE5EE;
+            }
+
+            .active-chip {
+                color: map-get($map: $green-color-variants, $key: 200);
+            }
+
+            .active-chip::before {
+                content: "✔️";
+            }
+
+            .inactive-chip {
+                color: map-get($map: $red-color-variants, $key: 400);
+            }
+
+            .inactive-chip::before {
+                content: "❌";
+            }
+        }
+    }
+}
