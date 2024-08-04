@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { authQuery } from 'src/app/features/auth/state/auth.query';
 import { AuthService } from 'src/app/features/auth/state/auth.service';
 import { ConfigService } from 'src/app/standlone/state/config.service';
+import { resetStores } from "@datorama/akita";
 
 @Component({
   selector: 'app-side-nav',
@@ -26,7 +27,7 @@ export class SideNavComponent implements OnInit {
     private configService: ConfigService,
     private authService: AuthService,
     private router: Router,
-    private query: authQuery
+    public query: authQuery
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +43,7 @@ export class SideNavComponent implements OnInit {
 
   public logout() {
     sessionStorage.clear();
+    resetStores(); 
     this.router.navigateByUrl('/');
   }
 }

@@ -5,6 +5,9 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { SettingsComponent } from './components/settings/settings.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
+import { EmpDetailsComponent } from './components/emp-details/emp-details.component';
+import { JobsComponent } from './components/jobs/jobs.component';
+import { JobFormComponent } from './components/job-form/job-form.component';
 
 const routes: Routes = [
   {
@@ -25,9 +28,22 @@ const routes: Routes = [
         component: CustomerListComponent,
       },
       {
+        path: 'employees/:empId',
+        component: EmpDetailsComponent,
+      },
+      {
         path: 'settings',
         component: SettingsComponent,
-      }
+      },
+      {
+        path: 'jobs',
+        component: JobsComponent,
+      },
+
+      {
+        path: 'job/new',
+        component: JobFormComponent,
+      },
     ],
   },
 ];

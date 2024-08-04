@@ -29,15 +29,25 @@
               appearance="outline"
               id="search-inp"
             >
-              <input matInput />
+              <input
+                matInput
+                placeholder="Search employee.."
+                [formControl]="searchCtrl"
+              />
               <mat-icon matPrefix class="search-icon">search</mat-icon>
             </mat-form-field>
           </div>
 
-          <button mat-stroked-button class="secondary-btn">
-            <mat-icon>filter_list</mat-icon>
-            <span>Filters</span>
-          </button>
+          <mat-form-field appearance="outline" id="search-inp">
+            <mat-select [formControl]="availabilityFilterCtrl">
+              <mat-option
+                *ngFor="let option of availabilityFilterOption"
+                [value]="option.value"
+              >
+                {{ option.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
 
         <div class="flex-item" fxLayout="row" fxLayoutGap="24px">
@@ -60,56 +70,110 @@
           fxLayoutGap="16px"
           fxLayoutAlign="start"
         >
-          <mat-card
-            *ngFor="let item of usersList"
-            class="emp-card"
-            fxLayout="column"
-            fxLayoutGap="12px"
-          >
-            <div class="row" fxLayout="row" fxLayoutGap="12px">
-              <div class="avator">
-                <mat-icon svgIcon="user-avator" class="large-icon"></mat-icon>
-              </div>
-
-              <div class="info" fxLayout="column">
-                <p class="dark-text">
-                  {{ item.userInfo[0]?.firstName }}
-                  {{ item.userInfo[0]?.lastName }}
+          <ng-container *ngIf="usersList?.length">
+            <mat-card
+              *ngFor="let item of usersList"
+              class="emp-card"
+              fxLayout="column"
+              fxLayoutGap="12px"
+              id="emp-card"
+            >
+              <mat-card-header>
+                <p class="status-chip">
+                  {{ item.userInfo[0]?.isActive ? "Active" : "Resigned" }}
                 </p>
-                <p class="grey-text">{{ item.designation }}</p>
-              </div>
+              </mat-card-header>
+
+              <mat-card-content (click)="openEmpDetails(item)">
+                <div class="row" fxLayout="row" fxLayoutGap="12px">
+                  <div class="avator">
+                    <mat-icon
+                      svgIcon="user-avator"
+                      class="large-icon"
+                    ></mat-icon>
+                  </div>
+
+                  <div class="info" fxLayout="column">
+                    <p class="dark-text">
+                      {{ item.userInfo[0]?.firstName }}
+                      {{ item.userInfo[0]?.lastName }}
+                    </p>
+                    <p class="grey-text">{{ item.designation }}</p>
+                  </div>
+                </div>
+
+                <div class="row" fxLayout="row" fxLayoutGap="12px">
+                  <div class="info" fxLayout="row wrap" fxLayoutGap="10px">
+                    <ng-container *ngFor="let s of item.skills">
+                      <p class="chip-text">
+                        {{ s }}
+                      </p>
+                    </ng-container>
+                  </div>
+                </div>
+
+                <div class="row" fxLayout="column" fxLayoutGap="12px">
+                  <div class="flex-item" fxLayout="row" fxLayoutGap="8px">
+                    <p class="label-text m-0">Emp Code</p>
+                    :
+                    <p class="m-0 value-text">{{ item.empCode }}</p>
+                  </div>
+
+                  <div class="flex-item" fxLayout="row" fxLayoutGap="8px">
+                    <p class="m-0 label-text">Email Address</p>
+                    :
+                    <p class="m-0 value-text">{{ item.userInfo[0]?.email }}</p>
+                  </div>
+
+                  <!-- <div class="flex-item" fxLayout="row" fxLayoutGap="8px">
+                    <p class="m-0 label-text">Employement Status</p>
+                    :
+                    <p class="m-0 value-text">
+                      {{ item.userInfo[0]?.isActive ? "Active" : "Inactive" }}
+                    </p>
+                  </div> -->
+
+                  <div class="flex-item" fxLayout="row" fxLayoutGap="8px">
+                    <p class="m-0 label-text">Status</p>
+                    :
+                    <p
+                      [ngClass]="
+                        item.availabilityStatus === 'unavailable'
+                          ? 'm-0 value-text chip red-chip'
+                          : 'm-0 value-text chip success-chip'
+                      "
+                    >
+                      {{ item.availabilityStatus }}
+                    </p>
+                  </div>
+                </div>
+              </mat-card-content>
+
+              <mat-card-actions>
+                <ng-container
+                  *ngIf="item?.availabilityStatus === 'unavailable'"
+                >
+                  <button
+                    mat-stroked-button
+                    class="calendar-btn"
+                    (click)="openDatesLogDialog(item)"
+                  >
+                    <mat-icon svgIcon="calendar"></mat-icon>
+                    <span>Update Availability</span>
+                  </button>
+                </ng-container>
+              </mat-card-actions>
+            </mat-card>
+          </ng-container>
+
+          <ng-container *ngIf="usersList?.length === 0">
+            <div class="text-center w-100 not-found-text">
+              <p>
+                It looks like there are no employees to display. Add new
+                employees to get started!
+              </p>
             </div>
-
-            <div class="row" fxLayout="row" fxLayoutGap="12px">
-              <div class="info" fxLayout="column">
-                <p class="chip-text">
-                  {{ item.skills[0] }}
-                </p>
-              </div>
-            </div>
-
-            <div class="row" fxLayout="column" fxLayoutGap="12px">
-              <div class="flex-item" fxLayout="row" fxLayoutGap="8px">
-                <p class="label-text m-0">Emp Code</p>
-                :
-                <p class="m-0 value-text">{{ item.empCode }}</p>
-              </div>
-
-              <div class="flex-item" fxLayout="row" fxLayoutGap="8px">
-                <p class="m-0 label-text">Email Address</p>
-                :
-                <p class="m-0 value-text">{{ item.userInfo[0]?.email }}</p>
-              </div>
-
-              <div class="flex-item" fxLayout="row" fxLayoutGap="8px">
-                <p class="m-0 label-text">Status</p>
-                :
-                <p class="m-0 value-text">
-                  {{ item.userInfo[0]?.isActive ? "Active" : "Inactive" }}
-                </p>
-              </div>
-            </div>
-          </mat-card>
+          </ng-container>
         </div>
 
         <!-- <mat-paginator

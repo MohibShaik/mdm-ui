@@ -145,6 +145,31 @@
         }
     }
 
+}
 
+.user-menu {
+    // min-width: 380px !important;
+    padding: 16px;
 
+    .label-text {
+        min-width: 80px;
+        color: map-get($map: $black-color-variants, $key: 500);
+        font-size: 14px;
+        font-weight: 500;
+
+        >span {
+            margin-left: 8px;
+        }
+    }
+
+    .value-text {
+        min-width: 110px;
+        color: map-get($map: $black-color-variants, $key: 200);
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .semi-colon {
+        width: 40px;
+    }
 }

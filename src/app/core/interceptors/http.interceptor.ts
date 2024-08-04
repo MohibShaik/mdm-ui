@@ -9,15 +9,17 @@ import {
 import { Observable, throwError } from 'rxjs';
 // import { ToastrService } from 'ngx-toastr';
 import { retry, catchError, finalize } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable()
 export class ErrorHttpInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private spinner: NgxSpinnerService) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    // this.spinner.show();
     return next
       .handle(
         request.clone({
@@ -26,7 +28,11 @@ export class ErrorHttpInterceptor implements HttpInterceptor {
       )
       .pipe(
         retry(0),
-        //finalize(() => {}),
+        // finalize(() => {
+        //   setTimeout(() => {
+        //     this.spinner.hide();
+        //   }, 2000);
+        // }),
         catchError((error: HttpErrorResponse) => {
           if (
             error.status === 400 &&

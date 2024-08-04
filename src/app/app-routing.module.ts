@@ -16,23 +16,6 @@ const routes: Routes = [
       import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'vendor',
-    loadChildren: () =>
-      import('./features/vendor/vendor.module').then((m) => m.VendorModule),
-  },
-  {
-    path: 'admin',
-    loadChildren: () =>
-      import('./features/admin/admin.module').then((m) => m.AdminModule),
-  },
-  {
-    path: 'employee',
-    loadChildren: () =>
-      import('./features/employee/employee.module').then(
-        (m) => m.EmployeeModule
-      ),
-  },
-  {
     path: 'home',
     resolve: { userDetails: UserResolver },
     canActivate: [AuthGuard],

@@ -1,0 +1,146 @@
+<div class="main-container">
+  <div
+    class="filters-section"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="18px"
+  >
+    <mat-form-field appearance="outline" fxFlex="25">
+      <mat-label>Jobs posted by</mat-label>
+      <mat-select [formControl]="vendorId">
+        <mat-option *ngFor="let e of vendorOptions" [value]="e.value">{{
+          e.viewValue
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fxFlex="25">
+      <mat-label>Workplace Type</mat-label>
+      <mat-select [formControl]="workPlaceType" multiple="true">
+        <mat-option *ngFor="let e of workPlaceOptions" [value]="e.value">{{
+          e.viewValue
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fxFlex="25">
+      <mat-label>Employement Type</mat-label>
+      <mat-select [formControl]="jobType" multiple="true">
+        <mat-option *ngFor="let e of employementTypeOption" [value]="e.value">{{
+          e.viewValue
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fxFlex="25">
+      <mat-label>Department</mat-label>
+      <mat-select [formControl]="department" multiple="true">
+        <mat-option *ngFor="let e of departmentOptions" [value]="e.value">{{
+          e.viewValue
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="jobs-list">
+    <!-- cards list  -->
+
+    <div class="page-header">
+      <p>
+        {{ getPageHeaderText() }}
+      </p>
+    </div>
+
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="16px" fxLayoutAlign="start">
+      <ng-container *ngIf="jobsList?.length">
+        <mat-card
+          *ngFor="let item of jobsList"
+          class="job-card"
+          fxLayout="column"
+          fxLayoutGap="12px"
+          id="emp-card"
+        >
+          <mat-card-header>
+            <!-- <p class="status-chip"> -->
+            <!-- {{ item.userInfo[0]?.isActive ? "Active" : "Resigned" }} -->
+            <!-- </p> -->
+          </mat-card-header>
+
+          <mat-card-content>
+            <div
+              class="row"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <div
+                class="avator"
+                fxLayout="row"
+                fxLayoutGap="18px"
+                fxLayoutAlign="start center"
+              >
+                <mat-icon svgIcon="jobs" class="large-icon"></mat-icon>
+                <div class="info" fxLayout="column">
+                  <p class="dark-text m-0">
+                    {{ item.jobTitle }}
+                  </p>
+                  <p class="grey-text">
+                    {{ item.hiringManagerInfo[0]?.companyName }}
+                  </p>
+                </div>
+              </div>
+
+              <button mat-stroked-button class="save-btn">
+                <mat-icon svgIcon="save"></mat-icon>
+                <span>Save Job</span>
+              </button>
+            </div>
+
+            <div class="row mt-24" fxLayout="row">
+              <div class="info" fxLayout="column">
+                <p>{{ item?.jobDescription }}</p>
+              </div>
+            </div>
+
+            <div class="row mt-14" fxLayout="row" fxLayoutGap="14px">
+              <p [ngClass]="getChipColorCode()">{{ item?.jobType }}</p>
+              <p [ngClass]="getChipColorCode()">{{ item?.department }}</p>
+              <p [ngClass]="getChipColorCode()">{{ item?.workPlaceType }}</p>
+            </div>
+          </mat-card-content>
+          <div class="divider"></div>
+
+          <mat-card-actions>
+            <div
+              class="row w-100"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <div class="salary-info" fxLayout="row" fxLayoutGap="10px">
+                <p class="light-text">{{ item?.compensation?.currencyType }}</p>
+                <p>
+                  <span class="dark-text">{{ item?.compensation?.min }}</span>
+                  <span>-</span>
+                  <span class="dark-text"
+                    >{{ item?.compensation?.max }}/month</span
+                  >
+                </p>
+              </div>
+
+              <ng-container *ngIf="getConnectEligibility(item?.createdBy)">
+                <button mat-stroked-button class="connect-btn">
+                  <span>Connect</span>
+                </button>
+              </ng-container>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </ng-container>
+
+      <ng-container *ngIf="jobsList?.length === 0">
+        <div class="text-center w-100 not-found-text">
+          <p>No jobs found matching your filters.</p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

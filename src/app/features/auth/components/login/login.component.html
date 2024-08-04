@@ -2,13 +2,14 @@
   <mat-card class="login-card">
     <mat-card-content>
       <div class="header text-center">
+        <!-- <img src="../../../../../assets/svg-icons/logo.png" alt="" srcset=""> -->
         <h2>Hiring</h2>
         <p class="m-0">Glad to see you again 👋</p>
         <p>Login to your account below</p>
       </div>
 
       <div class="body">
-        <div [formGroup]="loginForm">
+        <div [formGroup]="loginForm" (ngSubmit)="login()">
           <div class="input-field" fxLayout="column">
             <label for="emailAddress">Email Address</label>
             <mat-form-field class="example-full-width" appearance="outline">

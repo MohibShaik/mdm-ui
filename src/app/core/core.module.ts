@@ -16,9 +16,15 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptor } from './interceptors/token.interceptor';
 import { ErrorHttpInterceptor } from './interceptors/http.interceptor';
 import { GreetingComponent } from './layout/components/greeting/greeting.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
-  declarations: [SideNavComponent, LayoutComponent, FooterComponent, GreetingComponent],
+  declarations: [
+    SideNavComponent,
+    LayoutComponent,
+    FooterComponent,
+    GreetingComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -31,6 +37,7 @@ import { GreetingComponent } from './layout/components/greeting/greeting.compone
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
+    NgxSpinnerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
@@ -46,6 +53,7 @@ import { GreetingComponent } from './layout/components/greeting/greeting.compone
     LayoutComponent,
     FooterComponent,
     RouterModule,
+    NgxSpinnerModule,
   ],
 })
 export class CoreModule {}

@@ -8,6 +8,9 @@ import { UserFormDialogComponent } from './components/user-form-dialog/user-form
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
+import { EmpDetailsComponent } from './components/emp-details/emp-details.component';
+import { JobsComponent } from './components/jobs/jobs.component';
+import { JobFormComponent } from './components/job-form/job-form.component';
 
 @NgModule({
   declarations: [
@@ -17,11 +20,10 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
     CustomerListComponent,
     CustomerFormComponent,
     CustomerDetailsComponent,
+    EmpDetailsComponent,
+    JobsComponent,
+    JobFormComponent,
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    CoreModule,
-  ],
+  imports: [CommonModule, DashboardRoutingModule, CoreModule],
 })
 export class DashboardModule {}

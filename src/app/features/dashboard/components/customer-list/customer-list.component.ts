@@ -10,6 +10,12 @@ import { CustomerFormComponent } from '../customer-form/customer-form.component'
 import { CustomerDetailsComponent } from '../customer-details/customer-details.component';
 import { IEmployee } from '../../models/employee';
 import { authQuery } from 'src/app/features/auth/state/auth.query';
+import { Router } from '@angular/router';
+import { DatelogdialogComponent } from 'src/app/shared/components/datelogdialog/datelogdialog.component';
+import { NgxSpinnerService } from 'ngx-spinner';
+import * as moment from 'moment-timezone';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-customer-list',
@@ -23,6 +29,21 @@ export class CustomerListComponent {
   public currentPage = 0;
   public pageSizeOptions: number[] = [10, 20, 50, 100, 150, 200];
 
+  public availabilityFilterOption = [
+    {
+      viewValue: 'All Employees',
+      value: '',
+    },
+    {
+      viewValue: 'Available',
+      value: 'available',
+    },
+    {
+      viewValue: 'Unavailable',
+      value: 'unavailable',
+    },
+  ];
+
   displayedColumns: string[] = [
     'firstName',
     'lastName',
@@ -34,12 +55,31 @@ export class CustomerListComponent {
   ];
   dataSource = new MatTableDataSource<User>([]);
   public usersList!: any[];
+  public searchCtrl = new FormControl('');
+  public availabilityFilterCtrl = new FormControl(
+    this.availabilityFilterOption[0].value
+  );
+
   constructor(
     public dialog: MatDialog,
     private service: CustomersService,
     private toastr: ToastrService,
-    private query: authQuery
-  ) {}
+    private query: authQuery,
+    private router: Router,
+    public spinner: NgxSpinnerService
+  ) {
+    this.searchCtrl.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((value: any) => {
+        this.getUserData();
+      });
+
+    this.availabilityFilterCtrl.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((value: any) => {
+        this.getUserData();
+      });
+  }
 
   ngOnInit(): void {
     this.getUserData();
@@ -72,15 +112,29 @@ export class CustomerListComponent {
   }
 
   private getUserData() {
+    this.spinner.show();
+    const vendorId = sessionStorage.getItem('user_id')!;
     this.service
       .getEmployeesList(this.currentPage, this.pageSize, {
-        vendorId: this.query.currentUserInfo?._id,
+        vendorId: vendorId,
+        availabilityFilterOption: this.availabilityFilterCtrl?.value,
+        searchKey: this.searchCtrl?.value,
       })
-      .subscribe((data: any) => {
-        this.resultsLength = data?.response?.data.length;
-        this.usersList = data?.response?.data;
-        this.dataSource.paginator = this.paginator;
-      });
+      .subscribe(
+        (data: any) => {
+          this.resultsLength = data?.response?.data.length;
+          this.usersList = data?.response?.data;
+          this.dataSource.paginator = this.paginator;
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 1000);
+        },
+        (error) => {
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 1000);
+        }
+      );
   }
 
   public getChipColor(userRole: string) {
@@ -134,6 +188,22 @@ export class CustomerListComponent {
   public viewUser(user: User) {
     const dialogRef = this.dialog.open(CustomerDetailsComponent, {
       data: user,
+    });
+    dialogRef.afterClosed().subscribe((data: any) => {
+      if (data) {
+        this.getUserData();
+      }
+    });
+  }
+
+  public openEmpDetails(empDetails: any) {
+    this.router.navigateByUrl(`home/employees/${empDetails?._id}`);
+  }
+
+  public openDatesLogDialog(employeeInfo: any) {
+    const dialogRef = this.dialog.open(DatelogdialogComponent, {
+      data: employeeInfo,
+      width: '480px',
     });
     dialogRef.afterClosed().subscribe((data: any) => {
       if (data) {

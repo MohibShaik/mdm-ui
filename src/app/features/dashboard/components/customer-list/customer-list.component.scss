@@ -9,8 +9,23 @@ mat-card {
     height: 48px;
 }
 
+.calendar-btn {
+    background-color: rgb(255, 248, 242) !important;
+    color: map-get($map: $black-color-variants, $key: 300) !important;
+}
+
+.not-found-text {
+    margin-top: 180px;
+
+    >p {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+}
+
 .emp-card {
-    min-width: 210px;
+    width: 350px;
     padding: 16px;
     border-radius: 8px;
 
@@ -48,10 +63,35 @@ mat-card {
         font-weight: 400;
         color: map-get($map: $black-color-variants, $key: 500);
         margin: 0px !important;
+        // text-transform: capitalize;
     }
 
     .flex-item {
         gap: 10px;
+    }
+
+    .status-chip {
+        padding: 0 8px;
+        border-radius: 4px;
+        font-size: 13px;
+        color: map-get($map: $green-color-variants, $key: 200);
+        border: 1px solid map-get($map: $green-color-variants, $key: 200);
+    }
+
+    .chip {
+        padding: 4px 8px;
+        border-radius: 4px;
+        // font-size: 13px;
+    }
+
+    .red-chip {
+        color: map-get($map: $white-color-variants, $key: 300);
+        background-color: map-get($map: $red-color-variants, $key: 400);
+    }
+
+    .success-chip {
+        color: map-get($map: $white-color-variants, $key: 300);
+        background-color: map-get($map: $green-color-variants, $key: 200);
     }
 }
 

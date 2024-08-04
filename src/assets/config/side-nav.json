@@ -60,6 +60,14 @@
         },
         {
             "id": 2,
+            "displayName": "Jobs",
+            "iconName": "jobs",
+            "activeIcon": "jobs-active",
+            "route": "/home/jobs",
+            "disabled": false
+        },
+        {
+            "id": 3,
             "displayName": "Settings",
             "iconName": "settings-inactive",
             "activeIcon": "settings-active",

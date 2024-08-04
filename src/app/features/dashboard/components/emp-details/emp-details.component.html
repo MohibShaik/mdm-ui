@@ -1,0 +1,236 @@
+<div class="main-container">
+  <mat-card class="bg-white mat-elevation-z0">
+    <mat-card-header>
+      <div
+        class="header w-100"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <p>
+          {{
+            empDetails?.userId?.firstName + " " + empDetails?.userId?.lastName
+          }}
+        </p>
+
+        <button mat-stroked-button class="grey-btn">
+          <mat-icon>edit</mat-icon>
+          <span>Edit Details</span>
+        </button>
+      </div>
+    </mat-card-header>
+
+    <div class="divider"></div>
+    <mat-card-content fxLayout="column" fxLayoutGap="32px">
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="true" [disabled]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Personal Details </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <!--  content  -->
+          <div
+            class="row personal-details-section"
+            fxLayout="row"
+            fxLayoutGap="14px"
+            fxLayoutAlign="space-around center"
+          >
+            <div
+              class="flex-item"
+              fxFlex="25%"
+              fxLayout="column"
+              fxLayoutAlign="center center"
+            >
+              <mat-icon svgIcon="user-avator" class="user-avator"></mat-icon>
+              <p class="f-16 fw-700">
+                {{
+                  empDetails?.userId?.firstName +
+                    " " +
+                    empDetails?.userId?.lastName
+                }}
+              </p>
+
+              <p class="f-14 fw-400">
+                {{ empDetails?.designation }}
+              </p>
+            </div>
+            <div
+              class="flex-item"
+              fxFlex="33%"
+              fxLayout="column"
+              fxLayoutGap="20px"
+              fxLayoutAlign="center start"
+            >
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">First Name</p>
+                :
+                <p class="m-0 value-text">
+                  {{ empDetails?.userId?.firstName }}
+                </p>
+              </div>
+
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Last Name</p>
+                :
+                <p class="m-0 value-text">{{ empDetails?.userId?.lastName }}</p>
+              </div>
+
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Email Address</p>
+                :
+                <p class="m-0 value-text">{{ empDetails?.userId?.email }}</p>
+              </div>
+
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Emp Code</p>
+                :
+                <p class="m-0 value-text">{{ empDetails?.empCode }}</p>
+              </div>
+            </div>
+
+            <div
+              class="flex-item"
+              fxFlex="33%"
+              fxLayout="column"
+              fxLayoutGap="20px"
+              fxLayoutAlign="center start"
+            >
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Gender</p>
+                :
+                <p class="m-0 value-text">-</p>
+              </div>
+
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Address</p>
+                :
+                <p class="m-0 value-text">{{ empDetails?.address }}</p>
+              </div>
+
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">City</p>
+                :
+                <p class="m-0 value-text">{{ empDetails?.city }}</p>
+              </div>
+
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">State</p>
+                :
+                <p class="m-0 value-text">{{ empDetails?.state }}</p>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <!-- job details  -->
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="true" [disabled]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Job Details </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div
+            class="row personal-details-section"
+            fxLayout="row"
+            fxLayoutGap="14px"
+            fxLayoutAlign="space-around center"
+          >
+            <div
+              class="flex-item"
+              fxFlex="50%"
+              fxLayout="column"
+              fxLayoutGap="20px"
+              fxLayoutAlign="center start"
+            >
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Job Title</p>
+                :
+                <p class="m-0 value-text">
+                  {{ empDetails?.designation }}
+                </p>
+              </div>
+
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Employement Type</p>
+                :
+                <p class="m-0 value-text">-</p>
+              </div>
+
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Manager</p>
+                :
+                <p class="m-0 value-text">-</p>
+              </div>
+
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Skills</p>
+                :
+
+                <ng-container *ngFor="let s of empDetails?.skills">
+                  <p class="m-0 value-text">{{ s }}</p>
+                </ng-container>
+              </div>
+            </div>
+
+            <div
+              class="flex-item"
+              fxFlex="50%"
+              fxLayout="column"
+              fxLayoutGap="20px"
+              fxLayoutAlign="center start"
+            >
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Vendor Name</p>
+                :
+                <p class="m-0 value-text">
+                  {{
+                    empDetails?.vendorId?.firstName +
+                      " " +
+                      empDetails?.vendorId?.lastName
+                  }}
+                </p>
+              </div>
+
+              <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                <p class="label-text m-0">Consultancy Email</p>
+                :
+                <p class="m-0 value-text">{{ empDetails?.vendorId?.email }}</p>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="true" [disabled]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Work Logs </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div
+            class="row personal-details-section"
+            fxLayout="row"
+            fxLayoutGap="14px"
+            fxLayoutAlign="start center"
+          >
+            <div
+              class="flex-item"
+              fxFlex="50%"
+              fxLayout="column"
+              fxLayoutGap="20px"
+              fxLayoutAlign="start start"
+            >
+              <ng-container *ngFor="let date of empDetails?.datesLog">
+                <div class="child-item" fxLayout="row" fxLayoutGap="8px">
+                  <p class="label-text m-0">
+                    {{ date?.startDate | date : "MM/dd/YYYY" }}
+                  </p>
+                  :
+                  <p class="m-0 value-text">Available</p>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+  </mat-card>
+</div>

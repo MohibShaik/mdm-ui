@@ -63,7 +63,6 @@ export class HttpService {
     params = {},
     applyBaseApiUrl: boolean = true
   ): Observable<T> {
-    console.log(this.getUrl(path, applyBaseApiUrl), body, params)
     return this.http
       .post<T>(this.getUrl(path, applyBaseApiUrl), body, params)
       .pipe(catchError(this.formatErrors));

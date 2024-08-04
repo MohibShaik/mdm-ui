@@ -3,6 +3,10 @@ import { Store, StoreConfig } from '@datorama/akita';
 
 export interface authState {
   currentUserInfo?: any;
+  empDetailsById?: any;
+  allCountriesList?: any;
+  departmentOptions?: any;
+  jobFilters?: any;
 }
 
 export function createInitialState(): authState {

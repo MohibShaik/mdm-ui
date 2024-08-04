@@ -1,9 +1,16 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../state/user.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/features/auth/models/user.model';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Observable } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  startWith,
+} from 'rxjs/operators';
+import { CustomersService } from '../../state/customers.service';
 
 @Component({
   selector: 'app-user-form-dialog',
@@ -11,86 +18,66 @@ import { User } from 'src/app/features/auth/models/user.model';
   styleUrls: ['./user-form-dialog.component.scss'],
 })
 export class UserFormDialogComponent implements OnInit {
-  userInfo: any;
-  get f() {
-    return this.newUserForm.controls;
-  }
-  public newUserForm!: FormGroup;
-  public permissionsList = [
-    {
-      viewValue: 'Admin',
-      value: 'admin',
-    },
-    {
-      viewValue: 'Checker',
-      value: 'checker',
-    },
-    {
-      viewValue: 'Creator',
-      value: 'creator',
-    },
-    {
-      viewValue: 'User',
-      value: 'user',
-    },
-  ];
-  constructor(
-    public fb: FormBuilder,
-    private service: UserService,
-    private toastr: ToastrService,
-    public dialogRef: MatDialogRef<UserFormDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) data: User
-  ) {
-    this.userInfo = data;
-  }
+  public myCtrl = new FormControl([]);
+  public fillingList = [];
+  filteredPeopleList!: Observable<any[]>;
+  separatorKeysCodes: number[] = [COMMA, ENTER];
+  inputControl = new FormControl();
+  selectedOptions: string[] = [];
+  allOptions: string[] = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
+  filteredOptions!: Observable<string[]>;
+  public addOnBlur: boolean = false;
+  @ViewChild('peopleInput') peopleInput!: ElementRef;
 
-  ngOnInit(): void {
-    this.initializeForm();
-
-    if (this.userInfo) {
-      this.newUserForm.patchValue({
-        username: this.userInfo.username,
-        email: this.userInfo.email,
-        permissions: this.userInfo.permissions,
-        isActive: this.userInfo.isActive,
+  constructor(private service: CustomersService) {
+    this.myCtrl.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((value: any) => {
+        if (value.length >= 3) {
+          this.searchSkills(value);
+        }
       });
+  }
+
+  searchSkills(value: string) {
+    this.filteredPeopleList = this.service.searchSkills(value);
+  }
+
+  ngOnInit() {
+    this.filteredOptions = this.inputControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value))
+    );
+  }
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    if (value) {
+      this.selectedOptions.push(value);
+    }
+
+    event.input.value = '';
+    this.inputControl.setValue(null);
+  }
+
+  remove(option: string): void {
+    const index = this.selectedOptions.indexOf(option);
+
+    if (index >= 0) {
+      this.selectedOptions.splice(index, 1);
     }
   }
 
-  private initializeForm() {
-    this.newUserForm = this.fb.group({
-      username: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      permissions: ['', [Validators.required]],
-      isActive: [false],
-    });
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.selectedOptions.push(event.option.viewValue);
+    this.peopleInput.nativeElement.value = '';
   }
 
-  public onSubmit() {
-    if (this.userInfo) {
-      this.service.updateUser(this.newUserForm.value , this.userInfo?._id).subscribe(
-        (response) => {
-          this.toastr.success(response?.message);
-          this.dialogRef.close(true);
-        },
-        (error) => {
-          // this.toastr.error('Something went wrong , please try again later');
-        }
-      );
-    } else {
-      this.service.createNewUser(this.newUserForm.value).subscribe(
-        (response) => {
-          this.toastr.success('User saved successfully');
-          this.dialogRef.close(true);
-        },
-        (error) => {
-          // this.toastr.error('Something went wrong , please try again later');
-        }
-      );
-    }
-  }
-
-  public close() {
-    this.dialogRef.close(false);
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allOptions.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
   }
 }

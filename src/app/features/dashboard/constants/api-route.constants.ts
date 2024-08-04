@@ -9,5 +9,11 @@ export const endPoint = {
   employeesList: (pageIndex: number, pageSize: number) =>
     `${api}/employees?pageIndex=${pageIndex}&pageSize=${pageSize}`,
 
-  newEmployee : `${api}/saveNewEmp`
+  newEmployee: `${api}/saveNewEmp`,
+  updateEmpAvailability: `${api}/updateEmpAvailability`,
+  getEmpInfo: (empId: string) => `${api}/employees/${empId}`,
+
+  newJob: `${api}/jobs/new`,
+  jobsList: (pageIndex: number, pageSize: number) =>
+    `${api}/jobs?pageIndex=${pageIndex}&pageSize=${pageSize}`,
 };

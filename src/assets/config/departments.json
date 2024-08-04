@@ -1,0 +1,38 @@
+[
+    {
+        "viewValue": "Human Resources (HR)",
+        "value": "Human Resources"
+    },
+    {
+        "viewValue": "Finance/Accounting",
+        "value": "Finance/Accounting"
+    },
+    {
+        "viewValue": "Sales",
+        "value": "Sales"
+    },
+    {
+        "viewValue": "Marketing",
+        "value": "Marketing"
+    },
+    {
+        "viewValue": "Information Technology (IT)",
+        "value": "Information Technology (IT)"
+    },
+    {
+        "viewValue": "Customer Service",
+        "value": "Customer Service"
+    },
+    {
+        "viewValue": "Product Management",
+        "value": "Product Management"
+    },
+    {
+        "viewValue": "Quality Assurance (QA)",
+        "value": "Quality Assurance (QA)"
+    },
+    {
+        "viewValue": "Engineering",
+        "value": "Engineering"
+    }
+]

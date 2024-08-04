@@ -66,65 +66,113 @@ export class RegisterIconService {
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/message.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `notification`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/notification.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `dashboard`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/dashboard.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `dashboard-active`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/dashboard-active.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `employees-active`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/employees-active.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `employees`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/employees.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `logout`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/logout.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `logout-active`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/logout-active.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `vendor`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/vendor.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `vendor-active`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/vendor-active.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `clients`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/clients.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `clients-active`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/clients-active.svg'
         )
-      ).addSvgIcon(
+      )
+      .addSvgIcon(
         `user-avator`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
           '../../../../assets/svg-icons/user-square-svgrepo-com.svg'
+        )
+      )
+      .addSvgIcon(
+        `calendar`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/calendar.svg'
+        )
+      )
+      .addSvgIcon(
+        `user-circle`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/user-circle.svg'
+        )
+      )
+      .addSvgIcon(
+        `jobs`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/jobs.svg'
+        )
+      )
+      .addSvgIcon(
+        `jobs-active`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/jobs-active.svg'
+        )
+      )
+      .addSvgIcon(
+        `save-active`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/save-active.svg'
+        )
+      )
+      .addSvgIcon(
+        `save`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../../assets/svg-icons/save.svg'
         )
       );
   }

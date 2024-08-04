@@ -65,25 +65,6 @@
         </div>
 
         <div class="input-field" fxLayout="column">
-          <label for="username">Add skills</label>
-
-          <mat-form-field
-            class="example-full-width custom-input-field"
-            appearance="outline"
-          >
-            <input matInput placeholder="skills...." formControlName="skills" />
-          </mat-form-field>
-
-          <mat-error *ngIf="f['skills']?.touched && f['skills']?.invalid">
-            <div class="error" *ngIf="checkFormError('skills', 'required')">
-              skills is required
-            </div>
-          </mat-error>
-        </div>
-      </div>
-
-      <div class="second-row" fxLayout="row" fxLayoutGap="18px">
-        <div class="input-field" fxLayout="column">
           <label for="username">Experience (In years)</label>
           <mat-form-field
             class="example-full-width custom-input-field"
@@ -102,6 +83,32 @@
           >
             <div class="error" *ngIf="checkFormError('experience', 'required')">
               Experience is required
+            </div>
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="second-row" fxLayout="row" fxLayoutGap="18px">
+        <div class="input-field" fxLayout="column">
+          <label for="username">Designation</label>
+          <mat-form-field
+            class="example-full-width custom-input-field"
+            appearance="outline"
+          >
+            <input
+              matInput
+              placeholder="Ex: Software Engineer...."
+              formControlName="designation"
+            />
+          </mat-form-field>
+          <mat-error
+            *ngIf="f['designation']?.touched && f['designation']?.invalid"
+          >
+            <div
+              class="error"
+              *ngIf="checkFormError('designation', 'required')"
+            >
+              Designation is required
             </div>
           </mat-error>
         </div>
@@ -147,32 +154,6 @@
         </div>
 
         <div class="input-field" fxLayout="column">
-          <label for="username">Designation</label>
-          <mat-form-field
-            class="example-full-width custom-input-field"
-            appearance="outline"
-          >
-            <input
-              matInput
-              placeholder="Ex: Software Engineer...."
-              formControlName="designation"
-            />
-          </mat-form-field>
-          <mat-error
-            *ngIf="f['designation']?.touched && f['designation']?.invalid"
-          >
-            <div
-              class="error"
-              *ngIf="checkFormError('designation', 'required')"
-            >
-              Designation is required
-            </div>
-          </mat-error>
-        </div>
-      </div>
-
-      <div class="third-row" fxLayout="row" fxLayoutGap="18px">
-        <div class="input-field" fxLayout="column">
           <label for="username">City</label>
           <mat-form-field
             class="example-full-width custom-input-field"
@@ -186,7 +167,9 @@
             </div>
           </mat-error>
         </div>
+      </div>
 
+      <div class="third-row" fxLayout="row" fxLayoutGap="18px">
         <div class="input-field" fxLayout="column">
           <label for="username">State</label>
           <mat-form-field
@@ -200,6 +183,55 @@
               State is required
             </div>
           </mat-error>
+        </div>
+
+        <div class="input-field" fxLayout="column">
+          <label for="username">Add skills</label>
+
+          <mat-form-field
+            [ngClass]="
+              selectedOptions.length
+                ? 'skills-input-field'
+                : 'custom-input-field'
+            "
+            appearance="outline"
+          >
+            <mat-chip-grid
+              #myChipGrid
+              [formControl]="myControl"
+              aria-label="enter sandwich fillings"
+            >
+              <ng-container *ngFor="let filling of selectedOptions">
+                <mat-chip-row (removed)="remove(filling)">
+                  {{ filling }}
+                  <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip-row>
+              </ng-container>
+              <input
+                #peopleInput
+                [matChipInputFor]="myChipGrid"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)"
+                [formControl]="myControl"
+                [matAutocomplete]="auto"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+              />
+            </mat-chip-grid>
+
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              (optionSelected)="selected($event)"
+            >
+              <ng-container *ngFor="let people of filteredSkillsList | async">
+                <mat-option [value]="people" class="f-14 fw-600">
+                  {{ people }}
+                </mat-option>
+              </ng-container>
+            </mat-autocomplete>
+          </mat-form-field>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../state/auth.service';
 import { User } from '../../models/user.model';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     public authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -51,17 +53,16 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       return;
     } else {
+      this.spinner.show();
       this.authService.login(this.loginForm.value).subscribe(
         (response: any) => {
           sessionStorage.setItem('accessToken', response?.data.accessToken);
-          sessionStorage.setItem('user_name', response?.data.username);
           sessionStorage.setItem('user_id', response?.data._id);
-          // sessionStorage.setItem('user_type', response?.data.role);
           this.router.navigateByUrl('/home');
-          // this.onSignIn.emit(true);
+          this.spinner.hide();
         },
         (error) => {
-          // this.onSignIn.emit(false);
+          this.spinner.hide();
           console.log(error);
         }
       );

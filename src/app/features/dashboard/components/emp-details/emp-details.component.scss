@@ -1,0 +1,77 @@
+@import "../../../../../styles/colors";
+
+
+.main-container {
+    .bg-white {
+        background-color: map-get($map: $white-color-variants, $key: 300);
+    }
+
+    .user-avator {
+        width: 100px;
+        /* Set your desired width */
+        height: 100px;
+        /* Set your desired height */
+        font-size: 48px;
+        /* Adjust the font size if needed */
+    }
+
+    .dark-text {
+        font-size: 15px;
+        font-weight: 700;
+        color: map-get($map: $black-color-variants, $key: 200);
+        margin: 0px !important;
+    }
+
+    .grey-text {
+        font-size: 13px;
+        font-weight: 400;
+        color: map-get($map: $black-color-variants, $key: 500);
+        margin: 0px !important;
+    }
+
+    .chip-text {
+        background: rgb(255, 248, 242) !important;
+        color: #ef5133;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+
+    .label-text {
+        font-size: 14px;
+        font-weight: 700;
+        color: map-get($map: $black-color-variants, $key: 500);
+        margin: 0px !important;
+    }
+
+    .value-text {
+        font-size: 14px;
+        font-weight: 400;
+        color: map-get($map: $black-color-variants, $key: 200);
+        margin: 0px !important;
+    }
+
+    .child-item {
+        gap: 15px;
+    }
+
+    .personal-details-section {
+        margin: 24px 0;
+    }
+
+    .header {
+        padding: 24px;
+
+        >p {
+            font-size: 22px;
+            font-weight: 700;
+            color: map-get($map: $black-color-variants, $key: 200);
+        }
+    }
+
+    .mat-expansion-panel-header-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: map-get($map: $black-color-variants, $key: 200);
+    }
+}

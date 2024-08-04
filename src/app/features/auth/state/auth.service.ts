@@ -14,7 +14,11 @@ export class AuthService {
   private API = 'http://localhost:8080/api/auth/signin';
 
   login(userInfo: User): Observable<any> {
-    return this.http.post(endPoint.login, userInfo);
+    return this.http.post(endPoint.login, userInfo).pipe(
+      tap((response: any) => {
+        this.store.update({ currentUserInfo: response?.data });
+      })
+    );;
   }
 
   public getUserInfoById(userId: string): Observable<any> {

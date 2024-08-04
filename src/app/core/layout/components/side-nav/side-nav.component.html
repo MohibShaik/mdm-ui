@@ -54,17 +54,60 @@
           <button
             mat-icon-button
             class="example-icon"
-            aria-label="Example icon-button with share icon"
+            aria-label="Example icon-button with message icon"
           >
             <mat-icon svgIcon="message"></mat-icon>
           </button>
           <button
             mat-icon-button
             class="example-icon favorite-icon"
-            aria-label="Example icon-button with heart icon"
+            aria-label="Example icon-button with notification icon"
           >
             <mat-icon svgIcon="notification"></mat-icon>
           </button>
+
+          <button
+            mat-icon-button
+            class="example-icon favorite-icon"
+            aria-label="Example icon-button with user icon"
+            [matMenuTriggerFor]="menu"
+          >
+            <mat-icon svgIcon="user-circle"></mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+            <div class="user-menu">
+              <div class="row" fxLayout="row">
+                <p class="label-text">Name</p>
+
+                <p class="semi-colon">:</p>
+
+                <p class="value-text">
+                  {{
+                    query.currentUserInfo?.firstName +
+                      " " +
+                      query.currentUserInfo?.lastName
+                  }}
+                </p>
+              </div>
+              <div class="row" fxLayout="row">
+                <p class="label-text">Email</p>
+                <p class="semi-colon">:</p>
+
+                <p class="value-text">
+                  {{ query.currentUserInfo?.email }}
+                </p>
+              </div>
+
+              <div class="row" fxLayout="row">
+                <p class="label-text">Role</p>
+                <p class="semi-colon">:</p>
+                <p class="value-text">
+                  {{ query.currentUserInfo?.role }}
+                </p>
+              </div>
+            </div>
+          </mat-menu>
         </div>
       </div>
     </mat-toolbar>
@@ -83,7 +126,7 @@
           <mat-list-item
             [routerLink]="item.route"
             [routerLinkActive]="['is-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
+            [routerLinkActiveOptions]="{ exact: false }"
             #rla="routerLinkActive"
             [ngClass]="
               item.disabled

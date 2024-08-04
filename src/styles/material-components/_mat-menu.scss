@@ -1,6 +1,11 @@
 @import "../colors";
 
 @mixin mat-menu-scss {
+
+  .mat-mdc-menu-panel {
+    max-width: 380px !important;
+  }
+
   .side-nav-menu {
     background: map-get($map: $black-color-variants, $key: 400) !important;
     box-shadow: none !important;
@@ -27,7 +32,7 @@
       // list-style-image: url("../../assets/icons/line-img.svg");
       padding: 0px 10px;
 
-      > li {
+      >li {
         margin: 5px;
       }
     }

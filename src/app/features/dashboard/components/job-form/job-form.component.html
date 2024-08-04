@@ -1,0 +1,554 @@
+<div class="main-container">
+  <div
+    class="header-wrapper"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <p class="page-header">New Job Form</p>
+
+    <div
+      class="btn-wrapper"
+      fxLayout="row"
+      fxLayoutGap="20px"
+      fxLayoutAlign="end center"
+    >
+      <button
+        mat-raised-button
+        color="secondary"
+        class="cancel-btn btn"
+        (click)="close()"
+      >
+        Cancel
+      </button>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn custom-btn"
+        (click)="onSubmit()"
+        [disabled]="jobForm.invalid"
+      >
+        Publish Job
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="parent-wrapper"
+    fxLayout="row"
+    fxLayoutGap="24px"
+    [formGroup]="jobForm"
+  >
+    <div class="flex-item" fxFlex="65%">
+      <mat-card>
+        <mat-card-content>
+          <section fxLayout="column" fxLayoutGap="18px">
+            <div class="header">
+              <img src="../../../../../assets/svg-icons/company.png" alt="" />
+            </div>
+
+            <div class="job-info" fxLayout="column" fxLayoutGap="18px">
+              <div class="input-field-wrapper">
+                <p class="label">Job Title</p>
+                <mat-form-field
+                  class="example-full-width w-100"
+                  appearance="outline"
+                >
+                  <input
+                    matInput
+                    placeholder="Ex: Senior Software Engineer"
+                    formControlName="jobTitle"
+                  />
+                </mat-form-field>
+                <mat-error
+                  *ngIf="
+                    jobForm.controls['jobTitle']?.touched &&
+                    jobForm.controls['jobTitle']?.invalid
+                  "
+                >
+                  <div
+                    class="error"
+                    *ngIf="checkFormError('jobTitle', 'required')"
+                  >
+                    Job Title is required
+                  </div>
+                </mat-error>
+              </div>
+
+              <div class="input-field custom-text-area">
+                <p class="label">Job Description</p>
+                <mat-form-field
+                  class="example-full-width w-100"
+                  appearance="outline"
+                >
+                  <textarea
+                    matInput
+                    formControlName="jobDescription"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="3"
+                    cdkAutosizeMaxRows="10"
+                  >
+                  </textarea>
+                </mat-form-field>
+                <mat-error
+                  *ngIf="
+                    jobForm.controls['jobDescription']?.touched &&
+                    jobForm.controls['jobDescription']?.invalid
+                  "
+                >
+                  <div
+                    class="error"
+                    *ngIf="checkFormError('jobDescription', 'required')"
+                  >
+                    Job Description is required
+                  </div>
+                </mat-error>
+              </div>
+
+              <div class="input-field custom-text-area" fxLayout="column">
+                <p class="label">Skills</p>
+
+                <mat-form-field
+                  class="example-full-width w-100"
+                  appearance="outline"
+                >
+                  <mat-chip-grid
+                    #myChipGrid
+                    [formControl]="skillsCtrl"
+                    aria-label="Enter Skills"
+                  >
+                    <ng-container *ngFor="let filling of selectedOptions">
+                      <mat-chip-row (removed)="remove(filling)">
+                        {{ filling }}
+                        <button matChipRemove>
+                          <mat-icon>cancel</mat-icon>
+                        </button>
+                      </mat-chip-row>
+                    </ng-container>
+                    <input
+                      #peopleInput
+                      [matChipInputFor]="myChipGrid"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      (matChipInputTokenEnd)="add($event)"
+                      [formControl]="skillsCtrl"
+                      [matAutocomplete]="auto4"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="addOnBlur"
+                      placeholder="Please add the required skills"
+                    />
+                  </mat-chip-grid>
+
+                  <mat-autocomplete
+                    #auto4="matAutocomplete"
+                    (optionSelected)="selected($event)"
+                  >
+                    <ng-container
+                      *ngFor="let people of filteredSkillsList | async"
+                    >
+                      <mat-option [value]="people" class="f-14 fw-600">
+                        {{ people }}
+                      </mat-option>
+                    </ng-container>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+            </div>
+          </section>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="flex-item" fxFlex="35%">
+      <mat-card>
+        <mat-card-header>
+          <!-- <mat-card-title>Job Details</mat-card-title> -->
+        </mat-card-header>
+        <mat-card-content>
+          <section>
+            <div class="job-info" fxLayout="column" fxLayoutGap="18px">
+              <!-- job type  -->
+              <div class="input-field-wrapper">
+                <p class="label">Job Type</p>
+                <mat-form-field
+                  class="example-full-width w-100"
+                  appearance="outline"
+                >
+                  <mat-select formControlName="jobType" placeholder="Please select the job type">
+                    <mat-option
+                      *ngFor="let e of jobTypeOptions"
+                      [value]="e.value"
+                    >
+                      {{ e.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error
+                  *ngIf="
+                    jobForm.controls['jobType']?.touched &&
+                    jobForm.controls['jobType']?.invalid
+                  "
+                >
+                  <div
+                    class="error"
+                    *ngIf="checkFormError('jobType', 'required')"
+                  >
+                    Job Type is required
+                  </div>
+                </mat-error>
+              </div>
+
+              <!-- experience field  -->
+              <div class="input-field-wrapper">
+                <p class="label">Experience</p>
+                <div
+                  class="row"
+                  [formGroup]="experinceForm"
+                  fxLayout="row"
+                  fxLayoutGap="16px"
+                >
+                  <div class="sub-flex-item w-50">
+                    <mat-form-field
+                      class="example-full-width w-100"
+                      appearance="outline"
+                    >
+                      <input
+                        matInput
+                        placeholder="Ex: 2Years"
+                        formControlName="min"
+                        type="number"
+                      />
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="
+                        experinceForm.controls['min']?.touched &&
+                        experinceForm.controls['min']?.invalid
+                      "
+                    >
+                      <div
+                        class="error"
+                        *ngIf="checkExperienceError('min', 'required')"
+                      >
+                        Minimum experience is required
+                      </div>
+                    </mat-error>
+                  </div>
+                  <div class="sub-flex-item w-50">
+                    <mat-form-field
+                      class="example-full-width w-100"
+                      appearance="outline"
+                    >
+                      <input
+                        matInput
+                        placeholder="Ex: 5Years"
+                        formControlName="max"
+                        type="number"
+                      />
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="
+                        experinceForm.controls['max']?.touched &&
+                        experinceForm.controls['max']?.invalid
+                      "
+                    >
+                      <div
+                        class="error"
+                        *ngIf="checkExperienceError('max', 'required')"
+                      >
+                        Max experience is required
+                      </div>
+                    </mat-error>
+                  </div>
+                </div>
+              </div>
+
+              <!-- salary field  -->
+              <div class="input-field-wrapper">
+                <p class="label">Salary</p>
+                <div
+                  class="row"
+                  [formGroup]="compensationForm"
+                  fxLayout="row"
+                  fxLayoutGap="16px"
+                >
+                  <div class="sub-flex-item w-30">
+                    <mat-form-field
+                      class="example-full-width w-100"
+                      appearance="outline"
+                    >
+                      <mat-select formControlName="currencyType" placeholder="Currency">
+                        <mat-option
+                          *ngFor="let e of countriesList"
+                          [value]="e.currency"
+                        >
+                          {{ e.currency }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="
+                        compensationForm.controls['currencyType']?.touched &&
+                        compensationForm.controls['currencyType']?.invalid
+                      "
+                    >
+                      <div
+                        class="error"
+                        *ngIf="checkSalaryError('currencyType', 'required')"
+                      >
+                        Currency type is required
+                      </div>
+                    </mat-error>
+                  </div>
+                  <div class="sub-flex-item w-30">
+                    <mat-form-field
+                      class="example-full-width w-100"
+                      appearance="outline"
+                    >
+                      <input
+                        matInput
+                        placeholder="Min Salary"
+                        formControlName="min"
+                        type="number"
+                      />
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="
+                        compensationForm.controls['min']?.touched &&
+                        compensationForm.controls['min']?.invalid
+                      "
+                    >
+                      <div
+                        class="error"
+                        *ngIf="checkSalaryError('min', 'required')"
+                      >
+                        Minimum salary is required
+                      </div>
+                    </mat-error>
+                  </div>
+                  <div class="sub-flex-item w-30">
+                    <mat-form-field
+                      class="example-full-width w-100"
+                      appearance="outline"
+                    >
+                      <input
+                        matInput
+                        placeholder="Max Salary"
+                        formControlName="max"
+                        type="number"
+                      />
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="
+                        compensationForm.controls['max']?.touched &&
+                        compensationForm.controls['max']?.invalid
+                      "
+                    >
+                      <div
+                        class="error"
+                        *ngIf="checkSalaryError('max', 'required')"
+                      >
+                        Maximum salary is required
+                      </div>
+                    </mat-error>
+                  </div>
+                </div>
+              </div>
+
+              <!-- workPlaceType  -->
+              <div class="input-field-wrapper">
+                <p class="label">Workplace Type</p>
+                <mat-form-field
+                  class="example-full-width w-100"
+                  appearance="outline"
+                >
+                  <mat-select formControlName="workPlaceType" placeholder="Please select the Workplace">
+                    <mat-option
+                      *ngFor="let e of workPlaceTypeOptions"
+                      [value]="e.value"
+                    >
+                      {{ e.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error
+                  *ngIf="
+                    jobForm.controls['workPlaceType']?.touched &&
+                    jobForm.controls['workPlaceType']?.invalid
+                  "
+                >
+                  <div
+                    class="error"
+                    *ngIf="checkFormError('workPlaceType', 'required')"
+                  >
+                    Workplace Type is required
+                  </div>
+                </mat-error>
+              </div>
+
+              <!-- department  -->
+              <div class="input-field-wrapper">
+                <p class="label">Department</p>
+                <mat-form-field
+                  class="example-full-width w-100"
+                  appearance="outline"
+                >
+                  <mat-select formControlName="department" placeholder="Please select the department">
+                    <mat-option
+                      *ngFor="let e of query?.departmentOptions$ | async"
+                      [value]="e.value"
+                    >
+                      {{ e.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error
+                  *ngIf="
+                    jobForm.controls['department']?.touched &&
+                    jobForm.controls['department']?.invalid
+                  "
+                >
+                  <div
+                    class="error"
+                    *ngIf="checkFormError('department', 'required')"
+                  >
+                    Department is required
+                  </div>
+                </mat-error>
+              </div>
+
+              <!-- location field  -->
+              <div class="input-field-wrapper">
+                <p class="label">Job Location</p>
+                <div
+                  class="row"
+                  [formGroup]="locationForm"
+                  fxLayout="row"
+                  fxLayoutGap="16px"
+                >
+                  <div class="sub-flex-item w-30">
+                    <mat-form-field
+                      class="example-full-width w-100"
+                      appearance="outline"
+                    >
+                      <input
+                        type="text"
+                        placeholder="Country"
+                        aria-label="Number"
+                        matInput
+                        formControlName="country"
+                        [matAutocomplete]="auto"
+                      />
+                      <mat-autocomplete
+                        #auto="matAutocomplete"
+                        (optionSelected)="onCountrySelection($event)"
+                      >
+                        <mat-option
+                          *ngFor="let option of filteredOptions | async"
+                          [value]="option?.name"
+                        >
+                          {{ option?.name }}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="
+                        locationForm.controls['country']?.touched &&
+                        locationForm.controls['country']?.invalid
+                      "
+                    >
+                      <div
+                        class="error"
+                        *ngIf="checkLocationError('country', 'required')"
+                      >
+                        Job location is required
+                      </div>
+                    </mat-error>
+                  </div>
+
+                  <!-- state  -->
+                  <div class="sub-flex-item w-30">
+                    <mat-form-field
+                      class="example-full-width w-100"
+                      appearance="outline"
+                    >
+                      <input
+                        type="text"
+                        placeholder="State"
+                        matInput
+                        [matAutocomplete]="auto2"
+                        formControlName="state"
+                      />
+                      <mat-autocomplete
+                        #auto2="matAutocomplete"
+                        (optionSelected)="onStateSelection($event)"
+                      >
+                        <mat-option
+                          *ngFor="let x of filteredStatesOptions | async"
+                          [value]="x?.name"
+                        >
+                          {{ x?.name }}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="
+                        locationForm.controls['state']?.touched &&
+                        locationForm.controls['state']?.invalid
+                      "
+                    >
+                      <div
+                        class="error"
+                        *ngIf="checkLocationError('state', 'required')"
+                      >
+                        State is required
+                      </div>
+                    </mat-error>
+                  </div>
+
+                  <!-- city  -->
+                  <div class="sub-flex-item w-30">
+                    <mat-form-field
+                      class="example-full-width w-100"
+                      appearance="outline"
+                    >
+                      <input
+                        type="text"
+                        placeholder="City"
+                        matInput
+                        [matAutocomplete]="auto3"
+                        formControlName="city"
+                      />
+                      <mat-autocomplete #auto3="matAutocomplete">
+                        <mat-option
+                          *ngFor="let x of filteredCitiesOptions | async"
+                          [value]="x?.name"
+                        >
+                          {{ x?.name }}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-error
+                      *ngIf="
+                        locationForm.controls['city']?.touched &&
+                        locationForm.controls['city']?.invalid
+                      "
+                    >
+                      <div
+                        class="error"
+                        *ngIf="checkLocationError('city', 'required')"
+                      >
+                        City is required
+                      </div>
+                    </mat-error>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<!-- {{jobForm?.value | json}} -->

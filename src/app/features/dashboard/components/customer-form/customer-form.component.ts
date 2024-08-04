@@ -12,12 +12,9 @@ import { UserService } from '../../state/user.service';
 import { ConfigService } from 'src/app/standlone/state/config.service';
 import { authQuery } from 'src/app/features/auth/state/auth.query';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  Observable
-} from 'rxjs';
+import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-customer-form',
@@ -26,6 +23,11 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 })
 export class CustomerFormComponent {
   newUserForm!: FormGroup;
+  public selectedOptions: string[] = [];
+  @ViewChild('peopleInput') peopleInput!: ElementRef;
+  public separatorKeysCodes: number[] = [COMMA, ENTER];
+  public addOnBlur: boolean = false;
+  public filteredSkillsList!: Observable<any[]>;
   public permissionsList = [
     {
       viewValue: 'Silver',
@@ -43,6 +45,7 @@ export class CustomerFormComponent {
   usersList: any;
   visaOptions: any;
   options!: Observable<any[]>;
+  public myControl = new FormControl('');
 
   constructor(
     private fb: FormBuilder,
@@ -69,14 +72,11 @@ export class CustomerFormComponent {
       state: ['', [Validators.required]],
     });
 
-    this.newUserForm.controls['skills'].valueChanges
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged()
-      )
-      .subscribe((value) => {
-        if (value.length >= 3) {
-          this.options = this.custService.searchOptions(value);
+    this.myControl.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((value: any) => {
+        if (value?.length >= 3) {
+          this.filteredSkillsList = this.custService.searchSkills(value);
         }
       });
   }
@@ -85,10 +85,36 @@ export class CustomerFormComponent {
     this.getVisaConfig();
   }
 
-  createApprover(): FormGroup {
-    return this.fb.group({
-      approverId: ['', Validators.required],
-      isApproved: [false],
+  remove(option: string): void {
+    const index = this.selectedOptions.indexOf(option);
+
+    if (index >= 0) {
+      this.selectedOptions.splice(index, 1);
+    }
+
+    this.newUserForm.patchValue({
+      skills: this.selectedOptions,
+    });
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.selectedOptions.push(event.option.viewValue);
+    this.peopleInput.nativeElement.value = '';
+    this.newUserForm.patchValue({
+      skills: this.selectedOptions,
+    });
+  }
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    if (value) {
+      this.selectedOptions.push(value);
+    }
+
+    event.input.value = '';
+    this.newUserForm.patchValue({
+      skills: this.selectedOptions,
     });
   }
 

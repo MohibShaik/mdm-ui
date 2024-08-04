@@ -1,0 +1,48 @@
+<h1 mat-dialog-title class="f-18 fw-700">Update Employee Availability</h1>
+<div mat-dialog-content>
+  <div class="input-field" fxLayout="column">
+    <label for="username">Available Date (starting date)</label>
+    <mat-form-field
+      class="example-full-width custom-input-field"
+      appearance="outline"
+    >
+      <input matInput [matDatepicker]="picker" [formControl]="startDate" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-error *ngIf="startDate?.touched && startDate?.invalid">
+      <div class="error" *ngIf="startDate.errors">Start date is required</div>
+    </mat-error>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <div
+    class="btn-wrapper"
+    fxLayout="row"
+    fxLayoutGap="20px"
+    fxLayoutAlign="end center"
+  >
+    <button
+      mat-raised-button
+      color="secondary"
+      class="cancel-btn btn"
+      (click)="close()"
+    >
+      Cancel
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn custom-btn"
+      (click)="updateDatesLog()"
+      cdkFocusInitial
+    >
+      Update
+    </button>
+  </div>
+</div>

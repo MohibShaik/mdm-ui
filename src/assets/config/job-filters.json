@@ -1,0 +1,110 @@
+[
+    {
+        "filterType": "Posted by",
+        "formCtrl": "vendorId",
+        "multiple": "false",
+        "options": [
+            {
+                "viewValue": "All Jobs",
+                "value": ""
+            },
+            {
+                "viewValue": "My Jobs",
+                "value": ""
+            }
+        ]
+    },
+    {
+        "filterType": "Workplace Type",
+        "formCtrl": "workPlaceType",
+        "multiple": "true",
+        "options": [
+            {
+                "viewValue": "On site",
+                "value": "on-site"
+            },
+            {
+                "viewValue": "Remote",
+                "value": "remote"
+            },
+            {
+                "viewValue": "Hybrid",
+                "value": "hybrid"
+            }
+        ]
+    },
+    {
+        "filterType": "Employement Type",
+        "formCtrl": "jobType",
+        "multiple": "true",
+        "options": [
+            {
+                "viewValue": "Full Time",
+                "value": "full-time"
+            },
+            {
+                "viewValue": "Part Time",
+                "value": "part-time"
+            },
+            {
+                "viewValue": "Contract (C2H)",
+                "value": "contract"
+            },
+            {
+                "viewValue": "Freelance",
+                "value": "freelance"
+            },
+            {
+                "viewValue": "Internship",
+                "value": "internship"
+            },
+            {
+                "viewValue": "Volunteer",
+                "value": "volunteer"
+            }
+        ]
+    },
+    {
+        "filterType": "Department",
+        "formCtrl": "department",
+        "multiple": "true",
+        "options": [
+            {
+                "viewValue": "Human Resources (HR)",
+                "value": "Human Resources"
+            },
+            {
+                "viewValue": "Finance/Accounting",
+                "value": "Finance/Accounting"
+            },
+            {
+                "viewValue": "Sales",
+                "value": "Sales"
+            },
+            {
+                "viewValue": "Marketing",
+                "value": "Marketing"
+            },
+            {
+                "viewValue": "Information Technology (IT)",
+                "value": "Information Technology (IT)"
+            },
+            {
+                "viewValue": "Customer Service",
+                "value": "Customer Service"
+            },
+            {
+                "viewValue": "Product Management",
+                "value": "Product Management"
+            },
+            {
+                "viewValue": "Quality Assurance (QA)",
+                "value": "Quality Assurance (QA)"
+            },
+            {
+                "viewValue": "Engineering",
+                "value": "Engineering"
+            }
+        ]
+    }
+]
