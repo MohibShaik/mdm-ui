@@ -56,10 +56,13 @@ export class LoginComponent {
       this.spinner.show();
       this.authService.login(this.loginForm.value).subscribe(
         (response: any) => {
+          sessionStorage.clear();
           sessionStorage.setItem('accessToken', response?.data.accessToken);
-          sessionStorage.setItem('user_id', response?.data._id);
+          sessionStorage.setItem('id', response?.data._id);
           this.router.navigateByUrl('/home');
-          this.spinner.hide();
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 1000);
         },
         (error) => {
           this.spinner.hide();

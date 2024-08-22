@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CustomerDetailsComponent implements OnInit {
   public customerInfo: any;
-  public currentUserId = sessionStorage.getItem('user_id');
+  public currentUserId = sessionStorage.getItem('id');
   public hasApprovalAccess = false;
   constructor(
     public dialogRef: MatDialogRef<CustomerDetailsComponent>,

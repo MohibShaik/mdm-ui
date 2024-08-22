@@ -77,9 +77,9 @@
 }
 
 .primary-btn {
-    border: 1px solid map-get($map: $black-color-variants, $key: 300) !important;
-    color: map-get($map: $white-color-variants, $key: 300) !important;
-    background: map-get($map: $black-color-variants, $key: 300) !important;
+    border: 1px solid map-get($map: $black-color-variants, $key: 300);
+    color: map-get($map: $white-color-variants, $key: 300);
+    background: map-get($map: $black-color-variants, $key: 300);
     border-radius: 8px !important;
 }
 

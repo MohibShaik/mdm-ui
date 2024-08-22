@@ -1,0 +1,203 @@
+<div class="main-container">
+  <p class="m-0">
+    <mat-toolbar>
+      <div
+        class="row w-100"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <span class="page-title">Hiring</span>
+
+        <div class="nav-links" fxLayout="row" fxLayoutGap="24px">
+          <a href="#home">Home</a>
+          <a href="#aboutUs">How It Works</a>
+          <a href="#services">Services</a>
+          <a href="#reviews">Testimonials</a>
+        </div>
+
+        <div class="auth-buttons">
+          <a href="/auth/login" class="login">Log in</a>
+          <a href="#" class="signin">Signup</a>
+        </div>
+      </div>
+    </mat-toolbar>
+  </p>
+
+  <section class="landing">
+    <div class="content">
+      <h3>Why Choose Us</h3>
+      <h1>A recruiting software that brings big ideas & talents together.</h1>
+      <p>
+        Scalable features, tools, know-how, and support to help you at every
+        stage of the hiring process.
+      </p>
+      <div class="buttons">
+        <a href="/auth/login" class="get-started">Get Started For Free</a>
+        <!-- <a href="#" class="action">See logoname in Action</a> -->
+      </div>
+      <p class="note">27,500+ candidates got their jobs from Hiring.com</p>
+    </div>
+    <div class="image">
+      <img
+        src="../../../../../assets/images/landing-page-illustration.png"
+        alt="Recruiting Software"
+      />
+    </div>
+  </section>
+
+  <section id="aboutUs" class="white-bg" fxLayout="row" fxLayoutAlign="center center">
+    <div class="container">
+      <header>
+        <h2>Why Choose Us</h2>
+        <h1>
+          Make the right hires, faster with the world's leading recruiting
+          software
+        </h1>
+      </header>
+
+      <div class="features">
+        <div class="feature">
+          <img
+            src="../../../../../assets/images/hiring-process-1.png"
+            alt="Find and attract candidates"
+          />
+          <h3>Find and attract candidates</h3>
+          <p>
+            Post your job openings and attract the talent from the industry best
+            peers, employee referrals and more.
+          </p>
+        </div>
+
+        <div class="feature">
+          <img
+            src="../../../../../assets/images/hiring-process-2.png"
+            alt="Move the right applicants forward"
+          />
+          <h3>Move the right applicants forward</h3>
+          <p>
+            Collaborate with hiring system to evaluate applicants, gather
+            feedback.
+          </p>
+        </div>
+
+        <div class="feature">
+          <img
+            src="../../../../../assets/images/hiring-process-3.png"
+            alt="Make the best hire, in half the time"
+          />
+          <h3>Make the best hire, in half the time</h3>
+          <p>
+            Move faster on a recruiting platform that automates process and
+            manual tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="service-section">
+    <div class="left-column">
+      <h2>More reasons companies round the world choose Hiring.com</h2>
+      <p>
+        Whether you’re hiring Employee #2 or 200 new employees, Hiring’s
+        scalable tools, know-how, and support help you make the hires that make
+        your business great.
+      </p>
+      <button class="start-hiring" mat-raised-button (click)="openLogin()">Start Hiring</button>
+    </div>
+    <div class="right-column">
+      <div class="service">
+        <h3>World-class partners</h3>
+        <p>
+          Connect with LinkedIn, Google and 70+ other apps and tools to get more
+          done.
+        </p>
+      </div>
+      <div class="service">
+        <h3>Trusted security</h3>
+        <p>
+          Sleep soundly knowing your data is always safe and always accessible.
+          We’re ISO-certified.
+        </p>
+      </div>
+      <div class="service">
+        <h3>Expert advice</h3>
+        <p>
+          Make the right moves with help from 1000s of hiring templates and
+          tutorials.
+        </p>
+      </div>
+      <div class="service">
+        <h3>Fast, global support</h3>
+        <p>
+          Reach our award-winning support team in about 25 seconds by phone or
+          chat.
+        </p>
+      </div>
+      <div class="service">
+        <h3>Anywhere recruiting</h3>
+        <p>
+          Keep things moving from anywhere with our top-rated mobile hiring app.
+        </p>
+      </div>
+      <div class="service">
+        <h3>Assisted onboarding</h3>
+        <p>
+          Get up and running in days, not months — Hiring.com is just that easy
+          to use.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="review-section">
+    <div class="image-container">
+      <div class="small-image">
+        <img src="../../../../../assets/images/person-2.png" alt="User 1" />
+      </div>
+      <div class="large-image">
+        <img src="../../../../../assets/images/person-3.png" alt="User 2" />
+        <!-- <div class="badge">Ecorate</div> -->
+      </div>
+    </div>
+    <div class="review-content">
+      <h4>User Review</h4>
+      <h2>People who have succeeded from <span>Hiring.com</span></h2>
+      <blockquote>
+        <p>
+          "With the insights we can gather using Hiring.com, we're able to
+          reduce our dependence on external recruitment agencies to just one or
+          two specialty roles a year."
+        </p>
+      </blockquote>
+      <div class="review-author">
+        <p class="f-16"><strong>Wade Warren</strong></p>
+        <p class="f-12">Ecorate LTD.</p>
+      </div>
+      <div class="review-nav">
+        <!-- <button>&#8249;</button> -->
+        <!-- <button>&#8250;</button> -->
+      </div>
+    </div>
+  </section>
+
+  <section id="getStarted" class="getStarted">
+    <div class="text-container">
+      <h2>Let's grow together</h2>
+      <p>
+        Hiring.com helps vendors of all sizes hire at scale. Start today by
+        requesting a demo or posting a job for free to discover how Hiring.com
+        can help you find and hire great people.
+      </p>
+
+      <button mat-raised-button class="success-btn" (click)="openLogin()">Get Started</button>
+    </div>
+    
+    <div class="img-container">
+      <img src="../../../../../assets/images/illustration-img.png" alt="">
+    </div>
+  </section>
+
+
+  <app-footer></app-footer>
+</div>

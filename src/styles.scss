@@ -2,7 +2,7 @@
 @import "./styles/colors";
 @include mat.core();
 @import './styles/custom-theme.scss';
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 @import "./assets/scss/reusable";
 // @import "./assets/scss/override";
@@ -47,17 +47,11 @@
 @include mat-table-scss;
 
 
-$custom-font-family: "'Plus Jakarta Sans', sans-serif";
+$custom-font-family: "'Open Sans', sans-serif";
 
 * {
   box-sizing: border-box;
 }
-
-
-// html,
-// body {
-//   height: 100%;
-// }
 
 html,
 body {
@@ -85,3 +79,8 @@ $my-typography: mat.define-typography-config($font-family: $custom-font-family,
   );
 @include mat.typography-hierarchy($my-typography);
 @include mat.all-component-themes($backoffice-theme);
+
+::-webkit-scrollbar {
+  width: 0em;
+  height: 0em;
+}

@@ -5,6 +5,10 @@ import { JobService } from '../../state/job.service';
 import { ConfigService } from 'src/app/standlone/state/config.service';
 import { FormControl } from '@angular/forms';
 import { debounce, debounceTime, distinctUntilChanged } from 'rxjs';
+import { Router } from '@angular/router';
+import { CustomersService } from '../../state/customers.service';
+import { ToastrService } from 'ngx-toastr';
+import { IJob } from '../../models/job';
 
 @Component({
   selector: 'app-jobs',
@@ -17,7 +21,7 @@ export class JobsComponent implements OnInit {
   public currentPage = 0;
   public pageSizeOptions: number[] = [10, 20, 50, 100, 150, 200];
 
-  public vendorId = new FormControl(this.query.currentUserInfo?._id);
+  public vendorId = new FormControl('');
   public workPlaceType = new FormControl([]);
   public jobType = new FormControl([]);
   public department = new FormControl([]);
@@ -115,12 +119,16 @@ export class JobsComponent implements OnInit {
     },
   ];
   jobsList: any;
+  public hasEmployees = false;
 
   constructor(
     private spinner: NgxSpinnerService,
     public query: authQuery,
     private jobService: JobService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    public customerSerice: CustomersService,
+    public router: Router,
+    private toastr: ToastrService
   ) {
     this.vendorId.valueChanges
       .pipe(debounceTime(1000), distinctUntilChanged())
@@ -149,7 +157,7 @@ export class JobsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getJobsList();
-    console.log(this.query.currentUserInfo)
+    this.getEmpByVendorId();
   }
 
   private getJobsList() {
@@ -165,7 +173,11 @@ export class JobsComponent implements OnInit {
         (data: any) => {
           this.resultsLength = data?.response?.data.length;
           this.jobsList = data?.response?.data;
-          // this.dataSource.paginator = this.paginator;
+          if (this.jobsList.length) {
+            this.jobsList.forEach((job: IJob) => {
+              this.applicationStatus(job);
+            });
+          }
           setTimeout(() => {
             this.spinner.hide();
           }, 1000);
@@ -185,7 +197,7 @@ export class JobsComponent implements OnInit {
   public getPageHeaderText(): string {
     const result =
       this.vendorId?.value === this.query.currentUserInfo?._id
-        ? 'My Jobs'
+        ? 'My Jobs (Published by you)'
         : 'Recommended Jobs';
 
     return result;
@@ -210,5 +222,41 @@ export class JobsComponent implements OnInit {
 
   public getConnectEligibility(jobCreator: string): boolean {
     return this.query.currentUserInfo?._id !== jobCreator;
+  }
+
+  public applicationStatus(job: IJob): void {
+    const isJobApplied = job.applicants?.filter(
+      (x) => x?.applicant === this.query.currentUserInfo?._id
+    );
+
+    job.isApplied = isJobApplied?.length ? true : false;
+  }
+
+  public addUser() {
+    this.router.navigateByUrl('/home/job/new');
+  }
+
+  public onConnectClick(job: IJob): void {
+    if (this.hasEmployees) {
+      const jobInfo = {
+        job: job?._id,
+        applicant: this.query.currentUserInfo?._id,
+      };
+      this.jobService.applyForJob(jobInfo).subscribe((response) => {
+        this.toastr.success(response?.message);
+      });
+    } else {
+      this.toastr.error(
+        "Sorry, You don't have employees to apply for the job."
+      );
+    }
+  }
+
+  private getEmpByVendorId(): void {
+    this.customerSerice
+      .getEmpByVendorId(this.query.currentUserInfo?._id)
+      .subscribe((response) => {
+        this.hasEmployees = !!response?.data.length;
+      });
   }
 }

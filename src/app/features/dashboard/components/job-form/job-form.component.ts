@@ -295,7 +295,9 @@ export class JobFormComponent implements OnInit {
     });
   }
 
-  public close() {}
+  public close() {
+    this.router.navigateByUrl('home/jobs');
+  }
 
   public onSubmit() {
     console.log(this.jobForm.valid);

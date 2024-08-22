@@ -17,6 +17,7 @@ import { AuthInterceptor } from './interceptors/token.interceptor';
 import { ErrorHttpInterceptor } from './interceptors/http.interceptor';
 import { GreetingComponent } from './layout/components/greeting/greeting.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LandingPageComponent } from './layout/components/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     LayoutComponent,
     FooterComponent,
     GreetingComponent,
+    LandingPageComponent,
   ],
   imports: [
     CommonModule,

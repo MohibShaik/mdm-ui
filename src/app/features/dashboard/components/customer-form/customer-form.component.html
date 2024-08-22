@@ -1,19 +1,63 @@
 <div class="main-container">
-  <h1 mat-dialog-title class="f-20 fw-600 m-0">New Employee Form</h1>
-  <div mat-dialog-content>
-    <div [formGroup]="newUserForm" fxLayout="column" fxLayoutGap="32px">
-      <div class="first-row" fxLayout="row" fxLayoutGap="18px">
-        <div class="input-field" fxLayout="column">
+  <div class="row" fxLayout="row" fxLayoutAlign="space-between center">
+    <p class="fw-700 f-20">New Employee</p>
+    <div
+      class="btns-wrapper text-end"
+      fxLayout="row"
+      fxLayoutAlign="end center"
+      fxLayoutGap="20px"
+    >
+      <button
+        mat-raised-button
+        class="cancel-btn btn"
+        color="secondary"
+        (click)="onCancel()"
+      >
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn custom-btn"
+        [disabled]="newUserForm?.invalid"
+        (click)="onSubmit()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+
+  <mat-card class="mt-24">
+    <mat-card-header fxLayout="row" fxLayoutAlign="center center">
+      <div class="emp-img">
+        <mat-icon svgIcon="user-avator"></mat-icon>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content
+      [formGroup]="newUserForm"
+      fxLayout="column"
+      fxLayoutGap="38px"
+      class="mt-54"
+    >
+      <div
+        class="row"
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+        class="w-100"
+      >
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
           <label for="username">First Name</label>
           <mat-form-field
             class="example-full-width custom-input-field"
             appearance="outline"
           >
-            <input
-              matInput
-              placeholder="Janesmith"
-              formControlName="firstName"
-            />
+            <input matInput placeholder="Jane" formControlName="firstName" />
           </mat-form-field>
           <mat-error *ngIf="f['firstName']?.touched && f['firstName']?.invalid">
             <div class="error" *ngIf="checkFormError('firstName', 'required')">
@@ -22,17 +66,19 @@
           </mat-error>
         </div>
 
-        <div class="input-field" fxLayout="column">
+        <!-- last name  -->
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
           <label for="username">Last Name</label>
           <mat-form-field
             class="example-full-width custom-input-field"
             appearance="outline"
           >
-            <input
-              matInput
-              placeholder="Janesmith"
-              formControlName="lastName"
-            />
+            <input matInput placeholder="Smith" formControlName="lastName" />
           </mat-form-field>
           <mat-error *ngIf="f['lastName']?.touched && f['lastName']?.invalid">
             <div class="error" *ngIf="checkFormError('lastName', 'required')">
@@ -41,7 +87,13 @@
           </mat-error>
         </div>
 
-        <div class="input-field" fxLayout="column">
+        <!-- email  -->
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
           <label for="email">Email</label>
           <mat-form-field
             class="example-full-width custom-input-field"
@@ -64,7 +116,13 @@
           </mat-error>
         </div>
 
-        <div class="input-field" fxLayout="column">
+        <!-- experience  -->
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
           <label for="username">Experience (In years)</label>
           <mat-form-field
             class="example-full-width custom-input-field"
@@ -88,8 +146,19 @@
         </div>
       </div>
 
-      <div class="second-row" fxLayout="row" fxLayoutGap="18px">
-        <div class="input-field" fxLayout="column">
+      <!-- second row  -->
+      <div
+        class="row"
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+        class="w-100"
+      >
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
           <label for="username">Designation</label>
           <mat-form-field
             class="example-full-width custom-input-field"
@@ -113,7 +182,12 @@
           </mat-error>
         </div>
 
-        <div class="input-field" fxLayout="column">
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
           <label for="username">Visa status</label>
           <mat-form-field
             class="example-full-width custom-input-field"
@@ -134,58 +208,139 @@
           </mat-error>
         </div>
 
-        <div class="input-field" fxLayout="column">
-          <label for="username">Address</label>
-          <mat-form-field
-            class="example-full-width custom-input-field"
-            appearance="outline"
-          >
+        <!-- country  -->
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
+          <label for="username">Country</label>
+          <mat-form-field class="example-full-width w-100" appearance="outline">
             <input
+              type="text"
+              placeholder="Country"
+              aria-label="Number"
               matInput
-              placeholder="Address..."
-              formControlName="address"
+              formControlName="country"
+              [matAutocomplete]="auto"
             />
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              (optionSelected)="onCountrySelection($event)"
+            >
+              <mat-option
+                *ngFor="let option of filteredOptions | async"
+                [value]="option?.name"
+              >
+                {{ option?.name }}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
-          <mat-error *ngIf="f['address']?.touched && f['address']?.invalid">
-            <div class="error" *ngIf="checkFormError('address', 'required')">
-              Address is required
-            </div>
-          </mat-error>
-        </div>
-
-        <div class="input-field" fxLayout="column">
-          <label for="username">City</label>
-          <mat-form-field
-            class="example-full-width custom-input-field"
-            appearance="outline"
+          <mat-error
+            *ngIf="
+              newUserForm.controls['country']?.touched &&
+              newUserForm.controls['country']?.invalid
+            "
           >
-            <input matInput placeholder="City..." formControlName="city" />
-          </mat-form-field>
-          <mat-error *ngIf="f['city']?.touched && f['city']?.invalid">
-            <div class="error" *ngIf="checkFormError('city', 'required')">
-              City is required
+            <div class="error" *ngIf="checkFormError('country', 'required')">
+              Country is required
             </div>
           </mat-error>
         </div>
-      </div>
 
-      <div class="third-row" fxLayout="row" fxLayoutGap="18px">
-        <div class="input-field" fxLayout="column">
+        <!-- state -->
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
           <label for="username">State</label>
-          <mat-form-field
-            class="example-full-width custom-input-field"
-            appearance="outline"
-          >
-            <input matInput placeholder="State...." formControlName="state" />
+          <mat-form-field class="example-full-width w-100" appearance="outline">
+            <input
+              type="text"
+              placeholder="State"
+              matInput
+              [matAutocomplete]="auto2"
+              formControlName="state"
+            />
+            <mat-autocomplete
+              #auto2="matAutocomplete"
+              (optionSelected)="onStateSelection($event)"
+            >
+              <mat-option
+                *ngFor="let x of filteredStatesOptions | async"
+                [value]="x?.name"
+              >
+                {{ x?.name }}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
-          <mat-error *ngIf="f['state']?.touched && f['state']?.invalid">
+          <mat-error
+            *ngIf="
+              newUserForm.controls['state']?.touched &&
+              newUserForm.controls['state']?.invalid
+            "
+          >
             <div class="error" *ngIf="checkFormError('state', 'required')">
               State is required
             </div>
           </mat-error>
         </div>
+      </div>
 
-        <div class="input-field" fxLayout="column">
+      <!-- third row -->
+      <div
+        class="row"
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+        class="w-100"
+      >
+        <!-- city -->
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
+          <label for="username">City</label>
+          <mat-form-field class="example-full-width w-100" appearance="outline">
+            <input
+              type="text"
+              placeholder="City"
+              matInput
+              [matAutocomplete]="auto3"
+              formControlName="city"
+            />
+            <mat-autocomplete #auto3="matAutocomplete">
+              <mat-option
+                *ngFor="let x of filteredCitiesOptions | async"
+                [value]="x?.name"
+              >
+                {{ x?.name }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-error
+            *ngIf="
+              newUserForm.controls['city']?.touched &&
+              newUserForm.controls['city']?.invalid
+            "
+          >
+            <div class="error" *ngIf="checkFormError('city', 'required')">
+              City is required
+            </div>
+          </mat-error>
+        </div>
+
+        <!-- skills  -->
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
           <label for="username">Add skills</label>
 
           <mat-form-field
@@ -215,14 +370,14 @@
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 (matChipInputTokenEnd)="add($event)"
                 [formControl]="myControl"
-                [matAutocomplete]="auto"
+                [matAutocomplete]="auto4"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 [matChipInputAddOnBlur]="addOnBlur"
               />
             </mat-chip-grid>
 
             <mat-autocomplete
-              #auto="matAutocomplete"
+              #auto4="matAutocomplete"
               (optionSelected)="selected($event)"
             >
               <ng-container *ngFor="let people of filteredSkillsList | async">
@@ -233,33 +388,36 @@
             </mat-autocomplete>
           </mat-form-field>
         </div>
+
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
+          <label for="username">Role</label>
+          <mat-form-field
+            class="example-full-width custom-input-field"
+            appearance="outline"
+          >
+            <input
+              matInput
+              placeholder="Ex: Software Engineer...."
+              formControlName="role"
+            />
+          </mat-form-field>
+        </div>
+
+        <div
+          class="input-field"
+          fxLayout="column"
+          fxFlex="20"
+          class="flex-item"
+        >
+          <label for="username">Status</label>
+          <mat-slide-toggle formControlName="isActive"></mat-slide-toggle>
+        </div>
       </div>
-    </div>
-
-    <div
-      class="btn-wrapper"
-      fxLayout="row"
-      fxLayoutGap="20px"
-      fxLayoutAlign="end center"
-    >
-      <button
-        mat-raised-button
-        color="secondary"
-        class="cancel-btn btn"
-        (click)="close()"
-      >
-        Cancel
-      </button>
-
-      <button
-        mat-raised-button
-        color="primary"
-        class="btn custom-btn"
-        (click)="onSubmit()"
-        [disabled]="newUserForm.invalid"
-      >
-        Submit
-      </button>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
 </div>

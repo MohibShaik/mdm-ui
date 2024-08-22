@@ -13,11 +13,15 @@ import { AuthService } from 'src/app/features/auth/state/auth.service';
   providedIn: 'root',
 })
 export class UserResolver implements Resolve<boolean> {
+  public userId!: string;
   constructor(private service: AuthService, private query: authQuery) {}
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    return this.service.getUserInfoById(this.query.currentUserInfo?._id);
+    this.userId = this.query.currentUserInfo
+      ? this.query.currentUserInfo?._id
+      : sessionStorage.getItem('id');
+    return this.service.getUserInfoById(this.userId);
   }
 }

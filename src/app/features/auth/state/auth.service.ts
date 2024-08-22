@@ -18,10 +18,10 @@ export class AuthService {
       tap((response: any) => {
         this.store.update({ currentUserInfo: response?.data });
       })
-    );;
+    );
   }
 
-  public getUserInfoById(userId: string): Observable<any> {
+  public getUserInfoById(userId: any): Observable<any> {
     return this.http.get(endPoint.getUserInfoById(userId)).pipe(
       tap((response: any) => {
         this.store.update({ currentUserInfo: response?.data });

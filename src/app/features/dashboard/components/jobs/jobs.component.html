@@ -1,4 +1,20 @@
 <div class="main-container">
+  <div class="page-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <p class="standard-text page-title">Trending Jobs</p>
+
+    <div class="btns-div">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addUser()"
+        class="primary-btn"
+      >
+        <mat-icon>add</mat-icon>
+        <span>Add New Job</span>
+      </button>
+    </div>
+  </div>
+
   <div
     class="filters-section"
     fxLayout="row"
@@ -80,7 +96,7 @@
               >
                 <mat-icon svgIcon="jobs" class="large-icon"></mat-icon>
                 <div class="info" fxLayout="column">
-                  <p class="dark-text m-0">
+                  <p class="primary-text m-0">
                     {{ item.jobTitle }}
                   </p>
                   <p class="grey-text">
@@ -89,15 +105,15 @@
                 </div>
               </div>
 
-              <button mat-stroked-button class="save-btn">
+              <!-- <button mat-stroked-button class="save-btn">
                 <mat-icon svgIcon="save"></mat-icon>
                 <span>Save Job</span>
-              </button>
+              </button> -->
             </div>
 
             <div class="row mt-24" fxLayout="row">
               <div class="info" fxLayout="column">
-                <p>{{ item?.jobDescription }}</p>
+                <p class="ellipsis-text">{{ item?.jobDescription }}</p>
               </div>
             </div>
 
@@ -126,10 +142,22 @@
                 </p>
               </div>
 
-              <ng-container *ngIf="getConnectEligibility(item?.createdBy)">
-                <button mat-stroked-button class="connect-btn">
+              <ng-container
+                *ngIf="
+                  getConnectEligibility(item?.createdBy) && !item?.isApplied
+                "
+              >
+                <button
+                  mat-stroked-button
+                  class="connect-btn"
+                  (click)="onConnectClick(item)"
+                >
                   <span>Connect</span>
                 </button>
+              </ng-container>
+
+              <ng-container *ngIf="item?.isApplied">
+                <p class="m-0 t-green">Applied</p>
               </ng-container>
             </div>
           </mat-card-actions>

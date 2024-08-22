@@ -58,4 +58,8 @@ export class JobService {
   ): Observable<any> {
     return this.http.post(endPoint.jobsList(pageIndex, pageSize), filters);
   }
+
+  public applyForJob(jobInfo: any): Observable<any> {
+    return this.http.post(endPoint.applyForJob, jobInfo);
+  }
 }

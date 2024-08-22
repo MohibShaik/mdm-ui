@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { HttpService } from 'src/app/core/layout/services/http.service';
 import { User } from '../../auth/models/user.model';
 import { endPoint } from '../constants/api-route.constants';
@@ -57,5 +57,11 @@ export class CustomersService {
 
   public updateEmpAvailability(empInfo: any): Observable<any> {
     return this.http.post(endPoint.updateEmpAvailability, empInfo);
+  }
+
+  public getEmpByVendorId(id: string): Observable<any> {
+    return this.http
+      .post(endPoint.employeesByVendorId, { vendorId: id })
+      .pipe(map((x: any) => x.response));
   }
 }

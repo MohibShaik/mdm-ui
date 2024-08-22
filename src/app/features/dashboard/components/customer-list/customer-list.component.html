@@ -65,14 +65,14 @@
 
       <div class="grid">
         <div
-          fxLayout="row"
+          fxLayout="row wrap"
           fxLayoutWrap
           fxLayoutGap="16px"
           fxLayoutAlign="start"
         >
           <ng-container *ngIf="usersList?.length">
             <mat-card
-              *ngFor="let item of usersList"
+              *ngFor="let item of pagedCards"
               class="emp-card"
               fxLayout="column"
               fxLayoutGap="12px"
@@ -176,17 +176,17 @@
           </ng-container>
         </div>
 
-        <!-- <mat-paginator
+        <mat-paginator
           [length]="resultsLength"
           [pageIndex]="currentPage"
           [pageSize]="pageSize"
           [pageSizeOptions]="pageSizeOptions"
-          (page)="pageChanged($event)"
-          aria-label="Select page"
+          (page)="pageEvent = $event"
           class="mat-elevation-z0 orders-grid-paginator custompaginator"
           id="custom-paginator"
+          aria-label="Select page"
         >
-        </mat-paginator> -->
+        </mat-paginator>
       </div>
     </div>
   </div>

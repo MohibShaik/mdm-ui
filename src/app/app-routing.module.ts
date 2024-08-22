@@ -3,13 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { UserTypeComponent } from './standlone/user-type/user-type.component';
 import { UserResolver } from './core/resolvers/user.resolver';
+import { LandingPageComponent } from './core/layout/components/landing-page/landing-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full',
+    component: LandingPageComponent,
   },
+  // {
+  //   path: '',
+  //   redirectTo: 'auth',
+  //   pathMatch: 'full',
+  // },
   {
     path: 'auth',
     loadChildren: () =>

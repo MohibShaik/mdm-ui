@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { authQuery } from 'src/app/features/auth/state/auth.query';
 import { AuthService } from 'src/app/features/auth/state/auth.service';
 import { ConfigService } from 'src/app/standlone/state/config.service';
-import { resetStores } from "@datorama/akita";
+import { resetStores } from '@datorama/akita';
 
 @Component({
   selector: 'app-side-nav',
@@ -43,7 +43,6 @@ export class SideNavComponent implements OnInit {
 
   public logout() {
     sessionStorage.clear();
-    resetStores(); 
     this.router.navigateByUrl('/');
   }
 }

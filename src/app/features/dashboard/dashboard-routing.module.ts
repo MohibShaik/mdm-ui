@@ -28,6 +28,10 @@ const routes: Routes = [
         component: CustomerListComponent,
       },
       {
+        path: 'employee/new',
+        component: CustomerFormComponent,
+      },
+      {
         path: 'employees/:empId',
         component: EmpDetailsComponent,
       },

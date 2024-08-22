@@ -28,6 +28,7 @@ export class CustomerListComponent {
   public pageSize = 10;
   public currentPage = 0;
   public pageSizeOptions: number[] = [10, 20, 50, 100, 150, 200];
+  public pageEvent!: PageEvent;
 
   public availabilityFilterOption = [
     {
@@ -59,6 +60,7 @@ export class CustomerListComponent {
   public availabilityFilterCtrl = new FormControl(
     this.availabilityFilterOption[0].value
   );
+  pagedCards: any;
 
   constructor(
     public dialog: MatDialog,
@@ -103,17 +105,12 @@ export class CustomerListComponent {
   }
 
   public addUser() {
-    const dialogRef = this.dialog.open(CustomerFormComponent, {});
-    dialogRef.afterClosed().subscribe((data: any) => {
-      if (data) {
-        this.getUserData();
-      }
-    });
+    this.router.navigateByUrl('/home/employee/new');
   }
 
   private getUserData() {
     this.spinner.show();
-    const vendorId = sessionStorage.getItem('user_id')!;
+    const vendorId = sessionStorage.getItem('id')!;
     this.service
       .getEmployeesList(this.currentPage, this.pageSize, {
         vendorId: vendorId,
@@ -124,6 +121,7 @@ export class CustomerListComponent {
         (data: any) => {
           this.resultsLength = data?.response?.data.length;
           this.usersList = data?.response?.data;
+          this.setPagedCards(this.currentPage, this.pageSize);
           this.dataSource.paginator = this.paginator;
           setTimeout(() => {
             this.spinner.hide();
@@ -135,6 +133,17 @@ export class CustomerListComponent {
           }, 1000);
         }
       );
+  }
+
+  private setPagedCards(pageIndex: number, pageSize: number) {
+    const startIndex = pageIndex * pageSize;
+    const endIndex = startIndex + pageSize;
+    this.pagedCards = this.usersList.slice(startIndex, endIndex);
+  }
+
+  private handlePageEvent(event: PageEvent) {
+    this.pageEvent = event;
+    this.setPagedCards(event.pageIndex, event.pageSize);
   }
 
   public getChipColor(userRole: string) {
