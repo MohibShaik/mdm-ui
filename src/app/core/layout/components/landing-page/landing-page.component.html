@@ -45,7 +45,12 @@
     </div>
   </section>
 
-  <section id="aboutUs" class="white-bg" fxLayout="row" fxLayoutAlign="center center">
+  <section
+    id="aboutUs"
+    class="white-bg"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+  >
     <div class="container">
       <header>
         <h2>Why Choose Us</h2>
@@ -103,7 +108,9 @@
         scalable tools, know-how, and support help you make the hires that make
         your business great.
       </p>
-      <button class="start-hiring" mat-raised-button (click)="openLogin()">Start Hiring</button>
+      <button class="start-hiring" mat-raised-button (click)="openLogin()">
+        Start Hiring
+      </button>
     </div>
     <div class="right-column">
       <div class="service">
@@ -190,14 +197,17 @@
         can help you find and hire great people.
       </p>
 
-      <button mat-raised-button class="success-btn" (click)="openLogin()">Get Started</button>
+      <button mat-raised-button class="success-btn" (click)="openLogin()">
+        Get Started
+      </button>
     </div>
-    
-    <div class="img-container">
-      <img src="../../../../../assets/images/illustration-img.png" alt="">
+
+    <div class="img-container" fxLayout="row" fxLayoutAlign="center center">
+      <img src="../../../../../assets/images/illustration-img.png" alt="" />
     </div>
   </section>
 
-
-  <app-footer></app-footer>
+  <div>
+    <app-footer></app-footer>
+  </div>
 </div>

@@ -386,6 +386,12 @@ blockquote {
     }
 
     .img-container {
-        padding: 16px 0 0 64px;
+        padding: 16px 0 0 16px;
+
+        >img {
+            width: 90%;
+            height: 280px;
+            margin: auto;
+        }
     }
 }
